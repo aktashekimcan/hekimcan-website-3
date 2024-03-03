@@ -61,6 +61,7 @@ const About = () => {
             2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan bir
             software developer&apos;ım.
           </p>
+
         </Card>
         <Card>
           <p>
