@@ -43,13 +43,14 @@ const ProfileImage = styled.img`
 const About = () => {
   return (
     <>
-      <Head>
-        <title>Hakkımda - Hekim Aktaş'ın Portfolyosu</title>
-        <meta
-          name="description"
-          content="Hekim Aktaş Software Developer Portfolio Hakkımda Sayfası"
-        />
-      </Head>
+    <Head>
+  <title>Ana Sayfa - HEKİM AKTAŞ&apos;ın Portfolyosu</title>
+  <meta
+    name="description"
+    content="HEKİM AKTAŞ&apos;ın Software Developer Portfolio Hakkımda Sayfası"
+  />
+</Head>
+
       <AboutContainer>
         <Card>
           <ProfileImage
