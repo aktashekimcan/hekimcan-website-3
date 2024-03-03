@@ -2,7 +2,7 @@ import Head from "next/head";
 import styled from "styled-components";
 
 const AboutContainer = styled.div`
-  background-color: #121212; // Karanlık tema arka planı
+  background-color: #121212; /* Karanlık tema arka planı */
   color: #fff;
   min-height: 100vh;
   padding: 2rem;
@@ -13,9 +13,9 @@ const AboutContainer = styled.div`
 `;
 
 const Card = styled.div`
-  background-color: #1e1e1e; // Card arka planı
-  border-radius: 20px; // Card border radius
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); // Card box shadow
+  background-color: #1e1e1e; /* Card arka planı */
+  border-radius: 20px; /* Card border radius */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Card box shadow */
   padding: 2rem;
   margin: 1rem;
   max-width: 600px;
@@ -61,7 +61,6 @@ const About = () => {
             2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan bir
             software developer&apos;ım.
           </p>
-
         </Card>
         <Card>
           <p>
