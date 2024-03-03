@@ -198,14 +198,14 @@ const Skills: React.FC = () => {
       height={100}
       alt="Sass"
     />,
-    <IconWrapper color="#563d7c">
+    <IconWrapper color="#563d7c" key ="bootstrap">
       <FaBootstrap />
     </IconWrapper>,
 
-    <IconWrapper color="#f34f29">
+    <IconWrapper color="#f34f29" key ="git">
       <FaGit />
     </IconWrapper>,
-    <IconWrapper color="#007acc">
+    <IconWrapper color="#007acc" key="java">
       <FaJava />
     </IconWrapper>,
 
