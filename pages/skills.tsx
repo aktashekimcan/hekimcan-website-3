@@ -1,4 +1,6 @@
 import React from "react";
+import Image from 'next/image';
+
 import styled, { keyframes } from "styled-components";
 import { FaBootstrap, FaGit, FaJava } from "react-icons/fa";
 import Head from "next/head";
@@ -142,36 +144,58 @@ const Overlay = styled.div`
 
 const Skills: React.FC = () => {
   const skillIcons = [
-    <img
+    <Image
+      key="html5"
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg"
       alt="Html5"
-    />,
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg"
+      width={100}
+      height={100}
+    />
+,
+    <Image
+      key="css3" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg"
       alt="CSS3"
+      width={100}
+      height={100}
     />,
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+    <Image
+      key="js" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
       alt="JavaScript"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
+      key="react"
+      width={100}
+      height={100}
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
       alt="React"
     />,
-    <img
+    <Image
+      key="typescript"
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-original.svg"
       alt="TypeScript"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
+      key="angular"
       src="https://angular.io/assets/images/logos/angular/angular.svg"
       alt="Angular"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
       src="https://seeklogo.com/images/N/ngrx-logo-D484A6B4B3-seeklogo.com.png"
+      key="ngrx"
       alt="NGRX"
+      width={100}
+      height={100}
     />,
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg"
+    <Image
+      key="sass" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg"
+      width={100}
+      height={100}
       alt="Sass"
     />,
     <IconWrapper color="#563d7c">
@@ -185,69 +209,110 @@ const Skills: React.FC = () => {
       <FaJava />
     </IconWrapper>,
 
-    <img
+    <Image
+      key="english"
       src="https://cdn-icons-png.flaticon.com/512/5388/5388698.png"
       alt="English Language"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image 
+      key="tailwind"
       src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg"
       alt="Tailwind CSS"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
+      key="jquery"
       src="https://www.logo.wine/a/logo/JQuery/JQuery-Logo.wine.svg"
       alt="jQuery"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
+      key="react-router"
       src="https://static-00.iconduck.com/assets.00/react-router-icon-512x279-zswz065s.png"
       alt="React Router"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
+      key="redux"
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg"
       alt="React Redux"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
+      key="nextjs"
       src="https://static-00.iconduck.com/assets.00/nextjs-icon-2048x1234-pqycciiu.png"
       alt="Next.js"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
+      key="c"
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
       alt="C"
+      width={100}
+      height={100}
     />,
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
+    <Image
+      key="cplusplus" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
       alt="C++"
+      width={100}
+      height={100}
     />,
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+    <Image
+    key="python"    
+  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
       alt="Python"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
+      key="spring"
       src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg"
       alt="Spring Boot"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
+      key="csharp"
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg"
       alt="C#"
     />,
-    <img
+    <Image
+      key="dotnet"
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original-wordmark.svg"
       alt=".NET"
+      width={100}
+      height={100}
     />,
-    <img
+    <Image
+      key="nodejs"
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg"
       alt="Node.js"
     />,
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg"
+    <Image
+     key="mysql"     
+ src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg"
       alt="MySQL"
+      width={100}
+      height={100}
     />,
-    <img
-      src="https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg"
+    <Image
+      key ="ms-sql" src="https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg"
       alt="MS SQL Server"
+      width={100}
+      height={100}
     />,
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
+    <Image
+      key="mongodb" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
       alt="MongoDB"
+      width={100}
+      height={100}
     />,
   ];
 
