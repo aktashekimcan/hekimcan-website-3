@@ -63,13 +63,14 @@ const TypingCard = styled.div`
 const Index = () => {
   return (
     <>
-      <Head>
-        <title>Ana Sayfa - HEKİM AKTAŞ'ın Portfolyosu</title>
-        <meta
-          name="description"
-          content="HEKİM AKTAŞ'ın Software Developer Portfolio Ana Sayfası"
-        />
-      </Head>
+<Head>
+  <title>Ana Sayfa - HEKİM AKTAŞ&apos;ın Portfolyosu</title>
+  <meta
+    name="description"
+    content="HEKİM AKTAŞ&apos;ın Software Developer Portfolio Ana Sayfası"
+  />
+</Head>
+
       <PageContainer>
         <CardsContainer>
           <ContentCard>
