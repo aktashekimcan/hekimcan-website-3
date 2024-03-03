@@ -37,7 +37,7 @@ const ProfileImage = styled.img`
   height: 150px;
   border-radius: 50%;
   margin-bottom: 1rem;
-  border: 3px solid #61dafb; 
+  border: 3px solid #61dafb;
 `;
 
 const About = () => {
@@ -59,7 +59,7 @@ const About = () => {
           <h1>Hekim Aktaş</h1>
           <p>
             2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan bir
-            software developer'ım.
+            software developer&apos;ım.
           </p>
         </Card>
         <Card>
