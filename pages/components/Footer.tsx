@@ -44,21 +44,21 @@ const Footer = () => {
     <FooterContainer>
       <SocialMediaLinks>
         <a
-          href="https://github.com/yourusername"
+          href="https://github.com/hekimm"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FontAwesomeIcon icon={faGithub} />
         </a>
         <a
-          href="https://linkedin.com/in/yourusername"
+          href="https://www.linkedin.com/in/hekimcanaktas/"
           target="_blank"
           rel="noopener noreferrer"
         >
           <FontAwesomeIcon icon={faLinkedin} />
         </a>
         <a
-          href="https://twitter.com/yourusername"
+          href="https://twitter.com/hekimmcann"
           target="_blank"
           rel="noopener noreferrer"
         >
