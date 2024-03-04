@@ -18,9 +18,13 @@ function MyApp({ Component, pageProps }) {
     return () => clearTimeout(timer);
   }, []);
 
+  if (loading) {
+    return <Preloader />; // Only render the Preloader when loading
+  }
+
+  // Render the rest of the app when not loading
   return (
     <>
-      {loading && <Preloader />} {/* Render Preloader only while loading */}
       <Navbar />
       <Component {...pageProps} />
       <Footer />
