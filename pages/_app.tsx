@@ -19,10 +19,9 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   if (loading) {
-    return <Preloader />; // Only render the Preloader when loading
+    return <Preloader />; // Only show the Preloader while loading
   }
 
-  // Render the rest of the app when not loading
   return (
     <>
       <Navbar />
