@@ -185,13 +185,15 @@ const Skills: React.FC = () => {
       width={100}
       height={100}
     />,
-    <Image
-      src="https://seeklogo.com/images/N/ngrx-logo-D484A6B4B3-seeklogo.com.png"
-      key="ngrx"
-      alt="NGRX"
-      width={100}
-      height={100}
-    />,
+  <Image
+  key="ngrx"
+  src="https://seeklogo.com/images/N/ngrx-logo-D484A6B4B3-seeklogo.com.png"
+  alt="NGRX"
+  width={100}
+  height={100}
+  layout="fixed" // Bu satır eklendi
+/>
+,
     <Image
       key="sass" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg"
       width={100}
