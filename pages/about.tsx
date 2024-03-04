@@ -44,7 +44,7 @@ const About = () => {
   return (
     <>
     <Head>
-  <title>Ana Sayfa - HEKİM AKTAŞ&apos;ın Portfolyosu</title>
+  <title>Hakkımda  - HEKİM AKTAŞ Hakkında</title>
   <meta
     name="description"
     content="HEKİM AKTAŞ&apos;ın Software Developer Portfolio Hakkımda Sayfası"
