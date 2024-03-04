@@ -220,7 +220,7 @@ const Skills: React.FC = () => {
     />,
     <Image
       key="nextjs"
-      src="https://seeklogo.com/images/N/next-js-logo-7929BCD36F-seeklogo.com.png"
+      src="https://w7.pngwing.com/pngs/87/586/png-transparent-next-js-hd-logo.png"
       alt="Next.js"
       width={100}
       height={100}
