@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
-import { AiFillPhone, AiOutlineMail, AiFillEnvironment } from "react-icons/ai";
+import {  AiOutlineMail, AiFillEnvironment } from "react-icons/ai";
+import { FaMobileAlt } from "react-icons/fa";
 
 const rgbAnimation = keyframes`
   0% { background-position: 0% 50%; }
@@ -15,15 +16,20 @@ const CardContainer = styled.div`
 `;
 
 const IconCircle = styled.div`
-  background-color: #333; /* Change the background color to match the FormContainer */
+  background-color: #333;
   border-radius: 50%;
-  padding: 25px;
+  padding: 15px; // Padding boyutunu azalttım
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  z-index: 1;
-  position: relative; /* Add position relative to use pseudo-elements */
+  position: absolute; // Pozisyonunu absolute olarak değiştirdim
+  top: -30px; // Üstte ortalanmış olarak yerleştirmek için
+  left: 50%;
+  transform: translateX(
+    -50%
+  ); // Sol tarafından %50 kaydırarak tam ortaya alıyorum
+  z-index: 2; // InfoCard üzerinde gözükmesi için z-index'i artırdım
+  /* Add position relative to use pseudo-elements */
 
   &::before {
     content: "";
@@ -43,7 +49,7 @@ const IconCircle = styled.div`
 const InfoCard = styled.div`
   background-color: #222;
   color: white;
-  padding: 80px 20px 20px; /* Increased top padding */
+  padding: 60px 20px 20px; // Üstteki boşluğu azaltmak için padding'i azalttım
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   display: flex;
@@ -51,9 +57,10 @@ const InfoCard = styled.div`
   align-items: center;
   justify-content: center;
   width: 300px;
-  position: relative;
+  position: relative; // Relative pozisyon ekledim
   text-align: center;
   transition: transform 0.3s ease-in-out;
+  margin-top: 30px; // Üstteki IconCircle için boşluk bıraktım
 
   &:hover {
     transform: translateY(-10px);
@@ -91,18 +98,25 @@ const FormContainer = styled.div`
   max-width: 500px;
   margin: 40px auto;
   position: relative;
+
   &::before {
     content: "";
     position: absolute;
-    top: -10px; // Kenarlık genişletiliyor
+    top: -10px;
     right: -10px;
     bottom: -10px;
     left: -10px;
     z-index: -1;
     background: linear-gradient(90deg, cyan, magenta, yellow, cyan);
     background-size: 400% 400%;
-    border-radius: 20px; // Dış kenarlığın yuvarlaklığını ayarla
-    animation: ${rgbAnimation} 4s linear infinite; // Animasyon süresi ve hareket yönü
+    border-radius: 20px;
+    animation: ${rgbAnimation} 4s linear infinite;
+  }
+
+  @media (max-width: 576px) {
+    // Küçük ekranlar ve mobil cihazlar için
+    padding: 20px; // Daha az padding
+    max-width: 300px; // Daha küçük genişlik
   }
 `;
 
@@ -208,7 +222,7 @@ const ContactForm: React.FC = () => {
         </InfoCard>
         <InfoCard>
           <IconCircle>
-            <AiFillPhone size="2em" color="#121212" />
+            <FaMobileAlt size="2em" color="#121212" /> {/* Updated Icon */}
           </IconCircle>
           <CardTitle>Telefon</CardTitle>
           <CardText>+90 531 905 02 75</CardText>
