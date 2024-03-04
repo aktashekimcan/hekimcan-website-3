@@ -219,13 +219,6 @@ const Skills: React.FC = () => {
       height={100}
     />,
     <Image
-      key="nextjs"
-      src="https://w7.pngwing.com/pngs/87/586/png-transparent-next-js-hd-logo.png"
-      alt="Next.js"
-      width={100}
-      height={100}
-    />,
-    <Image
       key="c"
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg"
       alt="C"
