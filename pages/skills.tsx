@@ -293,7 +293,7 @@ const Skills: React.FC = () => {
   return (
     <Container>
       <Head>
-        <title>Becerilerim</title>
+        <title>Diller ve Araçlar</title>
       </Head>
       <SkillsContainer>
         <SkillsHeading>Diller ve Araçlar</SkillsHeading>
