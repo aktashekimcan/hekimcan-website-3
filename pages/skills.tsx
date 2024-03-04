@@ -185,15 +185,8 @@ const Skills: React.FC = () => {
       width={100}
       height={100}
     />,
-  <Image
-  key="ngrx"
-  src="https://seeklogo.com/images/N/ngrx-logo-D484A6B4B3-seeklogo.com.png"
-  alt="NGRX"
-  width={100}
-  height={100}
-  layout="fixed" // Bu satır eklendi
-/>
-,
+
+
     <Image
       key="sass" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg"
       width={100}
@@ -211,13 +204,6 @@ const Skills: React.FC = () => {
       <FaJava />
     </IconWrapper>,
 
-    <Image
-      key="english"
-      src="https://cdn-icons-png.flaticon.com/512/5388/5388698.png"
-      alt="English Language"
-      width={100}
-      height={100}
-    />,
     <Image 
       key="tailwind"
       src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg"
@@ -233,22 +219,8 @@ const Skills: React.FC = () => {
       height={100}
     />,
     <Image
-      key="react-router"
-      src="https://static-00.iconduck.com/assets.00/react-router-icon-512x279-zswz065s.png"
-      alt="React Router"
-      width={100}
-      height={100}
-    />,
-    <Image
-      key="redux"
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg"
-      alt="React Redux"
-      width={100}
-      height={100}
-    />,
-    <Image
       key="nextjs"
-      src="https://static-00.iconduck.com/assets.00/nextjs-icon-2048x1234-pqycciiu.png"
+      src="https://seeklogo.com/images/N/next-js-logo-7929BCD36F-seeklogo.com.png"
       alt="Next.js"
       width={100}
       height={100}
