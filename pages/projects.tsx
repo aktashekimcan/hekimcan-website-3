@@ -49,9 +49,9 @@ const Projects: React.FC = () => {
     {
       
       name: "Kişisel Portfolyo Web Sitesi",
-      technologies: "React.Redux, CSS, Bootstrap",
+      technologies: "React,Next.js, CSS, Bootstrap",
       description:
-        "Kişisel portfolyo web sitem, React ile geliştirildi ve CSS ile Bootstrap kullanılarak stilize edildi. Bu proje, projelerimi ve teknik becerilerimi sergiliyor.",
+        "Kişisel portfolyo web sitem, React-Next.js ile geliştirildi ve CSS ile Bootstrap kullanılarak stilize edildi. Bu proje, projelerimi ve teknik becerilerimi sergiliyor.",
     },
     {
      
