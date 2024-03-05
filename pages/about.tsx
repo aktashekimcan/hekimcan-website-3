@@ -18,7 +18,7 @@ const Card = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); // Card box shadow
   padding: 2rem;
   margin: 1rem;
-  max-width: 600px;
+  max-width: 600px; // Varsayılan maksimum genişlik
   text-align: center;
 
   h1 {
@@ -29,6 +29,18 @@ const Card = styled.div`
   p {
     font-size: 1.2rem;
     line-height: 1.5;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 700px; // Tablet ve daha büyük ekranlar için genişlik
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 800px; // Masaüstü ekranlar için genişlik
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1000px; // Büyük masaüstü ekranlar için genişlik
   }
 `;
 
@@ -44,7 +56,7 @@ const About = () => {
   return (
     <>
       <Head>
-        <title>Hakkımda - Hekim Aktaş'ın Portfolyosu</title>
+        <title>Hakkımda -  HEKİM AKTAŞ&apos;ın  Portfolyosu</title>
         <meta
           name="description"
           content="Hekim Aktaş Software Developer Portfolio Hakkımda Sayfası"
@@ -61,7 +73,6 @@ const About = () => {
             2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan bir
             software developer&apos;ım.
           </p>
-
         </Card>
         <Card>
           <p>
