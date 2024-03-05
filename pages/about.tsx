@@ -18,6 +18,7 @@ const Card = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); // Card box shadow
   padding: 2rem;
   margin: 1rem;
+  width: 100%; // Mobil ve küçük ekranlar için genişlik
   max-width: 600px; // Varsayılan maksimum genişlik
   text-align: center;
 
@@ -56,7 +57,7 @@ const About = () => {
   return (
     <>
       <Head>
-        <title>Hakkımda -  HEKİM AKTAŞ&apos;ın  Portfolyosu</title>
+       <title>Hakkımda -  HEKİM AKTAŞ&apos;ın  Portfolyosu</title>
         <meta
           name="description"
           content="Hekim Aktaş Software Developer Portfolio Hakkımda Sayfası"
@@ -71,7 +72,7 @@ const About = () => {
           <h1>Hekim Aktaş</h1>
           <p>
             2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan bir
-            software developer&apos;ım.
+            software developer'ım.
           </p>
         </Card>
         <Card>
