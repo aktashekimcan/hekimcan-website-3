@@ -1,4 +1,3 @@
-// components/Loader.tsx
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
@@ -16,11 +15,12 @@ const LoaderContainer = styled.div`
 const MatrixEffect = styled.div`
   font-family: "Courier New", monospace;
   font-size: 48px;
-  letter-spacing: 5px;
+  letter-spacing: 0; // Azaltılmış harf aralığı
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
   text-align: center;
+  display: ${(props) => (props.hide ? "none" : "block")}; // Görünürlük kontrolü
 `;
 
 const ProgressText = styled.p`
@@ -28,6 +28,7 @@ const ProgressText = styled.p`
   color: #00ff00;
   font-weight: bold;
   margin-top: 20px;
+  display: ${(props) => (props.hide ? "none" : "block")}; // Görünürlük kontrolü
 `;
 
 const appear = keyframes`
@@ -42,7 +43,7 @@ const appear = keyframes`
 const WelcomeText = styled.h1`
   opacity: 0;
   animation: ${appear} 2s ease-in-out forwards;
-  animation-delay: 1s; // Gecikmeyi azalt
+  animation-delay: 1s;
   color: #00ff00;
   font-size: 3rem;
   text-shadow: 0px 0px 10px rgba(0, 255, 0, 0.7);
@@ -73,10 +74,12 @@ const Loader = () => {
 
   return (
     <LoaderContainer>
-      <MatrixEffect>{generateMatrixEffect()}</MatrixEffect>
-      <ProgressText>%{progress}</ProgressText>
+      <MatrixEffect hide={progress === 100}>
+        {generateMatrixEffect()}
+      </MatrixEffect>
+      <ProgressText hide={progress === 100}>%{progress}</ProgressText>
       {progress === 100 && (
-        <WelcomeText>Hoş Geldiniz ,ben Hekim AKTAŞ</WelcomeText>
+        <WelcomeText>Hoş Geldiniz,ben Hekim AKTAŞ</WelcomeText>
       )}
     </LoaderContainer>
   );
