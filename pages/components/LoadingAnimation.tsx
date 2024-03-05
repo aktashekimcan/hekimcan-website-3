@@ -1,7 +1,8 @@
-import React, { useState, useEffect, FC } from "react";
+// components/Loader.tsx
+import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
-const LoadingContainer = styled.div`
+const LoaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,88 +13,73 @@ const LoadingContainer = styled.div`
   color: #00ff00;
 `;
 
-const RandomText = styled.p`
+const MatrixEffect = styled.div`
+  font-family: "Courier New", monospace;
   font-size: 48px;
-  color: #00ff00;
+  letter-spacing: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
 `;
 
 const ProgressText = styled.p`
-  margin-top: 20px;
-  font-size: 30px;
+  font-size: 24px;
   color: #00ff00;
   font-weight: bold;
+  margin-top: 20px;
 `;
 
-const WelcomeText = styled.h1`
-  font-size: 80px;
-  color: #00ff00;
-  text-shadow: 0px 0px 10px rgba(0, 255, 0, 0.7);
-  @media (max-width: 1024px) {
-    font-size: 60px;
-  }
-  @media (max-width: 768px) {
-    font-size: 40px;
-  }
-  @media (max-width: 480px) {
-    font-size: 30px;
-  }
-`;
-
-const appearAndScale = keyframes`
+const appear = keyframes`
   from {
-    transform: scale(0.5);
     opacity: 0;
   }
   to {
-    transform: scale(1);
     opacity: 1;
   }
 `;
 
-const AnimatedWelcomeText = styled(WelcomeText)`
-  animation: ${appearAndScale} 1s ease-in-out;
+const WelcomeText = styled.h1`
+  opacity: 0;
+  animation: ${appear} 2s ease-in-out forwards;
+  animation-delay: 1s; // Gecikmeyi azalt
+  color: #00ff00;
+  font-size: 3rem;
+  text-shadow: 0px 0px 10px rgba(0, 255, 0, 0.7);
+  margin-top: 20px;
 `;
 
-const Preloader: FC = () => {
-  const [text, setText] = useState<string>("");
-  const [progress, setProgress] = useState<number>(0);
-  const [welcome, setWelcome] = useState<boolean>(false);
+const Loader = () => {
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setText(
-        Array.from({ length: 10 }, () =>
-          Math.random() > 0.5 ? "1" : "0",
-        ).join(""),
-      );
-      setProgress((oldProgress) => {
-        if (oldProgress < 100) {
-          return oldProgress + 1;
-        }
-        clearInterval(interval);
-        return 100;
-      });
-    }, 50);
-
-    setTimeout(() => {
-      setWelcome(true);
-    }, 5000);
+      setProgress((oldProgress) => (oldProgress < 100 ? oldProgress + 1 : 100));
+    }, 30);
 
     return () => clearInterval(interval);
   }, []);
 
+  const generateMatrixEffect = () => {
+    return (
+      <span>
+        {Array.from({ length: 16 }, () =>
+          // Karakter sayısını 16'ya çıkar
+          Math.random() > 0.5 ? "1" : "0",
+        ).join("")}
+      </span>
+    );
+  };
+
   return (
-    <LoadingContainer>
-      {!welcome ? (
-        <>
-          <RandomText>{text}</RandomText>
-          <ProgressText>%{progress}</ProgressText>
-        </>
-      ) : (
-        <AnimatedWelcomeText>Hoş Geldiniz</AnimatedWelcomeText>
+    <LoaderContainer>
+      <MatrixEffect>{generateMatrixEffect()}</MatrixEffect>
+      <ProgressText>%{progress}</ProgressText>
+      {progress === 100 && (
+        <WelcomeText>Hoş Geldiniz ben Hekim AKTAŞ</WelcomeText>
       )}
-    </LoadingContainer>
+    </LoaderContainer>
   );
 };
 
-export default Preloader;
+export default Loader;
