@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Hekim Aktaş - Software Developer Portfolio</title>
+       
         <meta name="description" content="Hekim Aktaş'ın kişisel software developer portfolyosu." />
         <meta name="keywords" content="Hekim Aktaş, Software Developer, Web Developer, Portfolio" />
         <meta name="author" content="Hekim Aktaş" />
