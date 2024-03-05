@@ -72,7 +72,7 @@ const About = () => {
           <h1>Hekim Aktaş</h1>
           <p>
             2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan bir
-            software developer'ım.
+            Software Developer&apos;ım.
           </p>
         </Card>
         <Card>
