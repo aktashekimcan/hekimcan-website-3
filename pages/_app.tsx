@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }) {
         <meta name="twitter:image" content="https://media.licdn.com/dms/image/D5603AQGaUrkZgKeBcA/profile-displayphoto-shrink_800_800/0/1697036903040?e=1715212800&v=beta&t=SUSU1ncYMe8tGXcmQfMPbXKgWCuy62vSAke8gO-pgvo" />
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta charset="UTF-8" />
+    <meta charSet="UTF-8" />
       </Head>
       {loading ? (
         <Loader />
