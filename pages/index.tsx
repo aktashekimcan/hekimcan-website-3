@@ -75,7 +75,7 @@ const Index = () => {
         <CardsContainer>
           <ContentCard>
             <CardImage
-              src="https://scontent.fesb7-1.fna.fbcdn.net/v/t39.30808-6/273762295_4809138162509607_8738308158712443924_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=02bIgSyrDF0AX-Mrdn3&_nc_ht=scontent.fesb7-1.fna&oh=00_AfA6eyamnPjuKoZoelJeMUTi5cTbXuAVIfzLsRhKcdE7QA&oe=65E7092F"
+              src="https://scontent.fesb7-1.fna.fbcdn.net/v/t39.30808-6/273762295_4809138162509607_8738308158712443924_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=EBn4o5YGv8IAX960Wr1&_nc_ht=scontent.fesb7-1.fna&oh=00_AfAB_Ix9RGH0oyWzhWw7JmIu6-6KfhGIlQHcHT1QA58rAw&oe=65ECF7EF"
               alt="Hekim Aktaş"
             />
             <h1>HEKİM AKTAŞ</h1>
