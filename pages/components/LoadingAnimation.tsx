@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
+// Define a type for the custom props
+type VisibilityProps = {
+  hide: boolean;
+};
+
 const LoaderContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,23 +17,23 @@ const LoaderContainer = styled.div`
   color: #00ff00;
 `;
 
-const MatrixEffect = styled.div`
+const MatrixEffect = styled.div<VisibilityProps>`
   font-family: "Courier New", monospace;
   font-size: 48px;
-  letter-spacing: 0; // Azaltılmış harf aralığı
+  letter-spacing: 0;
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
   text-align: center;
-  display: ${(props) => (props.hide ? "none" : "block")}; // Görünürlük kontrolü
+  display: ${(props) => (props.hide ? "none" : "block")};
 `;
 
-const ProgressText = styled.p`
+const ProgressText = styled.p<VisibilityProps>`
   font-size: 24px;
   color: #00ff00;
   font-weight: bold;
   margin-top: 20px;
-  display: ${(props) => (props.hide ? "none" : "block")}; // Görünürlük kontrolü
+  display: ${(props) => (props.hide ? "none" : "block")};
 `;
 
 const appear = keyframes`
@@ -65,7 +70,6 @@ const Loader = () => {
     return (
       <span>
         {Array.from({ length: 16 }, () =>
-          // Karakter sayısını 16'ya çıkar
           Math.random() > 0.5 ? "1" : "0",
         ).join("")}
       </span>
