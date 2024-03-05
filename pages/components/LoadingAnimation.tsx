@@ -83,7 +83,7 @@ const Loader = () => {
       </MatrixEffect>
       <ProgressText hide={progress === 100}>%{progress}</ProgressText>
       {progress === 100 && (
-        <WelcomeText>Hoş Geldiniz,ben Hekim AKTAŞ</WelcomeText>
+        <WelcomeText>Hoş Geldiniz</WelcomeText>
       )}
     </LoaderContainer>
   );
