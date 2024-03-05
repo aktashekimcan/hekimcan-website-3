@@ -2,7 +2,7 @@ import Head from "next/head";
 import styled from "styled-components";
 
 const AboutContainer = styled.div`
-  background-color: #121212; /* Karanlık tema arka planı */
+  background-color: #121212; // Karanlık tema arka planı
   color: #fff;
   min-height: 100vh;
   padding: 2rem;
@@ -13,12 +13,12 @@ const AboutContainer = styled.div`
 `;
 
 const Card = styled.div`
-  background-color: #1e1e1e; /* Card arka planı */
-  border-radius: 20px; /* Card border radius */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Card box shadow */
+  background-color: #1e1e1e; // Card arka planı
+  border-radius: 20px; // Card border radius
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); // Card box shadow
   padding: 2rem;
   margin: 1rem;
-  max-width: 600px;
+  max-width: 600px; // Varsayılan maksimum genişlik
   text-align: center;
 
   h1 {
@@ -29,6 +29,18 @@ const Card = styled.div`
   p {
     font-size: 1.2rem;
     line-height: 1.5;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 700px; // Tablet ve daha büyük ekranlar için genişlik
+  }
+
+  @media (min-width: 1024px) {
+    max-width: 800px; // Masaüstü ekranlar için genişlik
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 1000px; // Büyük masaüstü ekranlar için genişlik
   }
 `;
 
@@ -43,14 +55,13 @@ const ProfileImage = styled.img`
 const About = () => {
   return (
     <>
-    <Head>
-  <title>Hakkımda  - HEKİM AKTAŞ Hakkında</title>
-  <meta
-    name="description"
-    content="HEKİM AKTAŞ&apos;ın Software Developer Portfolio Hakkımda Sayfası"
-  />
-</Head>
-
+      <Head>
+        <title>Hakkımda - Hekim Aktaş'ın Portfolyosu</title>
+        <meta
+          name="description"
+          content="Hekim Aktaş Software Developer Portfolio Hakkımda Sayfası"
+        />
+      </Head>
       <AboutContainer>
         <Card>
           <ProfileImage
@@ -60,7 +71,7 @@ const About = () => {
           <h1>Hekim Aktaş</h1>
           <p>
             2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan bir
-            Software Developerım.
+            software developer&apos;ım.
           </p>
         </Card>
         <Card>
