@@ -66,7 +66,7 @@ const About = () => {
       <AboutContainer>
         <Card>
           <ProfileImage
-            src="https://scontent.fesb7-1.fna.fbcdn.net/v/t39.30808-6/273499217_4790860821004008_555242861065204042_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=_ew5wEwt9RUAX8bogqx&_nc_ht=scontent.fesb7-1.fna&oh=00_AfCnq_Ovkadfu6OH04JgwRY7zby2BOEY81F6l1c7XbkXxg&oe=65E8215D"
+            src="https://media.licdn.com/dms/image/D4E03AQGXmGkqP3kSGA/profile-displayphoto-shrink_800_800/0/1709712082289?e=1715212800&v=beta&t=veLSpXN3RxlLrtOJvtxzf5upo9yuDpWDCFeNfbGiWt0"
             alt="Profil Resmi"
           />
           <h1>Hekim Aktaş</h1>
