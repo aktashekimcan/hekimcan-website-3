@@ -161,6 +161,7 @@ const Header = () => {
         <FontAwesomeIcon icon={isNavOpen ? faTimes : faBars} />
       </MobileNavToggle>
       <HeaderContainer isOpen={isNavOpen} id="header">
+        
         <div className="d-flex flex-column">
           <div className="profile">
             <ProfileImage
