@@ -1,106 +1,95 @@
-import Head from "next/head";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import TypingAnimation from "./components/TypingAnimation";
+import Typed from "typed.js";
+const backgroundImageUrl =
+  "https://media.licdn.com/dms/image/D4D16AQF1QKld3LUC0Q/profile-displaybackgroundimage-shrink_350_1400/0/1697048712098?e=1715212800&v=beta&t=u-D9xP9LHWyNdCXJ7wKN2c6bovxOgqyvw1xVtq-UWM4"; // Burada resminizin URL'sini belirleyin
 
-const PageContainer = styled.div`
-  background-color: #121212;
-  color: #fff;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const CardsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 1200px;
+const HeroSection = styled.section`
   width: 100%;
-  margin: 0 auto;
-`;
+  height: 100vh;
+  background: url(${backgroundImageUrl}) top center;
+  background-size: contain;
+  position: relative;
 
-const ContentCard = styled.div`
-  background-color: #1e1e1e;
-  padding: 20px;
-  margin: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  width: 80%;
-  max-width: 600px;
-`;
+  &:before {
+    content: "";
+    background: rgba(5, 13, 24, 0.3);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
 
-const CardImage = styled.img`
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 20px;
-`;
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
 
-const Introduction = styled.section`
   h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #fff;
+
+    @media (max-width: 768px) {
+      font-size: 28px;
+      line-height: 36px;
+    }
   }
 
   p {
-    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 50px;
+    font-size: 26px;
+    font-family: "Poppins", sans-serif;
+
+    span {
+      color: #fff;
+      padding-bottom: 4px;
+      letter-spacing: 1px;
+      border-bottom: 3px solid #149ddd;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    background-attachment: fixed;
   }
 `;
 
-const TypingCard = styled.div`
-  background-color: #1e1e1e;
-  padding: 20px;
-  margin: 20px 0;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-`;
+const Hero = () => {
+  useEffect(() => {
+    const typed = new Typed(".typed", {
+      strings: ["Yazılım Mühendisliği Öğrencisi", "Sr.Full Stack Web Developer", "Jr.Data Scientist", "Jr.Mobile App Developer"],
+      loop: true,
+      typeSpeed: 100,
+      backSpeed: 50,
+      backDelay: 2000,
+    });
 
-const Index = () => {
+    return () => {
+      typed.destroy();
+    };
+  }, []);
+
   return (
-    <>
-<Head>
-  <title>Ana Sayfa - HEKİM AKTAŞ&apos;ın Portfolyosu</title>
-  <meta
-    name="description"
-    content="HEKİM AKTAŞ&apos;ın Software Developer Portfolio Ana Sayfası"
-  />
-</Head>
-
-      <PageContainer>
-        <CardsContainer>
-          <ContentCard>
-            <CardImage
-              src="https://scontent.fesb7-1.fna.fbcdn.net/v/t39.30808-6/273762295_4809138162509607_8738308158712443924_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=EBn4o5YGv8IAX960Wr1&_nc_ht=scontent.fesb7-1.fna&oh=00_AfAB_Ix9RGH0oyWzhWw7JmIu6-6KfhGIlQHcHT1QA58rAw&oe=65ECF7EF"
-              alt="Hekim Aktaş"
-            />
-            <h1>HEKİM AKTAŞ</h1>
-          </ContentCard>
-          <ContentCard>
-            <Introduction>
-              <p>
-                Merhaba, ben Hekim Aktaş. Yaratıcı ve yenilikçi yazılım
-                çözümleri sunmayı hedefleyen bir yazılım geliştiriciyim.
-              </p>
-              <p>
-                Kişisel gelişim sürecinin sürekli bir öğrenme ve yenilenme
-                süreci olduğuna inanıyorum ve bu inançla, her yeni günü bir
-                fırsat olarak görüp, bilgimi ve yeteneklerimi artırmaya devam
-                ediyorum. Portfolyoma hoş geldiniz.
-              </p>
-            </Introduction>
-          </ContentCard>
-        </CardsContainer>
-        <TypingCard>
-          <TypingAnimation />
-        </TypingCard>
-      </PageContainer>
-    </>
+    <HeroSection id="hero">
+      <div className="hero-container" data-aos="fade-in">
+        <h1>Hekim Aktaş</h1>
+        <p>
+          Ben <span className="typed"></span>
+        </p>
+      </div>
+    </HeroSection>
   );
 };
 
-export default Index;
+export default Hero;
