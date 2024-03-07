@@ -50,7 +50,11 @@ const MobileNavToggle = styled.button`
   ${commonTransition};
 `;
 
-const HeaderContainer = styled.header`
+interface HeaderContainerProps {
+  isOpen: boolean;
+}
+
+const HeaderContainer = styled.header<HeaderContainerProps>`
   position: fixed;
   top: 0;
   left: 0;
@@ -62,6 +66,7 @@ const HeaderContainer = styled.header`
   overflow-y: auto;
   box-shadow: ${(props) =>
     props.isOpen ? "0 4px 8px rgba(0, 0, 0, 0.1)" : "none"};
+
   @media (max-width: 768px) {
     transform: translateX(${(props) => (props.isOpen ? "0" : "-100%")});
     width: 80%;
@@ -156,10 +161,10 @@ const Header = () => {
   };
   return (
     <>
-        <MobileNavToggle onClick={() => setIsNavOpen(!isNavOpen)}>
-          <FontAwesomeIcon icon={isNavOpen ? faTimes : faBars} />
-        </MobileNavToggle>
-        <HeaderContainer isOpen={isNavOpen} id="header">
+      <MobileNavToggle onClick={() => setIsNavOpen(!isNavOpen)}>
+        <FontAwesomeIcon icon={isNavOpen ? faTimes : faBars} />
+      </MobileNavToggle>
+      <HeaderContainer isOpen={isNavOpen} id="header">
         <div className="d-flex flex-column">
           <div className="profile">
             <ProfileImage
