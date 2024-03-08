@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
+import { useRouter } from "next/router";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -149,6 +151,15 @@ const NavItem = styled.li`
     }
   }
 
+  ${(props) =>
+    props.isActive &&
+    css`
+      a {
+        background-color: #149ddd;
+        color: #fff;
+      }
+    `}
+
   ${commonTransition};
 `;
 
@@ -159,6 +170,16 @@ const Header = () => {
   const closeNav = () => {
     setIsNavOpen(false);
   };
+  const router = useRouter();
+  const menuItems = [
+    { href: "/", icon: faHome, text: "Ana Sayfa" },
+    { href: "/about", icon: faUser, text: "Hakkımda" },
+    { href: "/education", icon: faGraduationCap, text: "Eğitim" },
+    { href: "/skills", icon: faCode, text: "Diller ve Araçlar" },
+    { href: "/projects", icon: faProjectDiagram, text: "Projeler" },
+    { href: "/contact", icon: faEnvelope, text: "İletişim" },
+    // Diğer menü öğeleri buraya eklenebilir
+  ];
   return (
     <>
       <MobileNavToggle onClick={() => setIsNavOpen(!isNavOpen)}>
@@ -185,7 +206,7 @@ const Header = () => {
               <SocialLink href="#" className="instagram">
                 <FontAwesomeIcon icon={faInstagram} />
               </SocialLink>
-             
+
               <SocialLink href="#" className="linkedin">
                 <FontAwesomeIcon icon={faLinkedin} />
               </SocialLink>
@@ -193,54 +214,16 @@ const Header = () => {
           </div>
           <nav id="navbar" className="nav-menu navbar">
             <NavList>
-              <NavItem>
-                <Link href="/" passHref>
-                  <span className="nav-link" onClick={closeNav}>
-                    <FontAwesomeIcon icon={faHome} />
-                    <span>Ana Sayfa</span>
-                  </span>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/about" passHref>
-                  <span className="nav-link" onClick={closeNav}>
-                    <FontAwesomeIcon icon={faUser} />
-                    <span>Hakkımda</span>
-                  </span>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/education" passHref>
-                  <span className="nav-link" onClick={closeNav}>
-                    <FontAwesomeIcon icon={faGraduationCap} />
-                    <span>Eğitim</span>
-                  </span>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/skills" passHref>
-                  <span className="nav-link" onClick={closeNav}>
-                    <FontAwesomeIcon icon={faCode} />
-                    <span>Diller ve Araçlar</span>
-                  </span>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/projects" passHref>
-                  <span className="nav-link" onClick={closeNav}>
-                    <FontAwesomeIcon icon={faProjectDiagram} />
-                    <span>Projeler</span>
-                  </span>
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link href="/contact" passHref>
-                  <span className="nav-link" onClick={closeNav}>
-                    <FontAwesomeIcon icon={faEnvelope} />
-                    <span>İletişim</span>
-                  </span>
-                </Link>
-              </NavItem>
+              {menuItems.map((item, index) => (
+                <NavItem key={index} isActive={router.pathname === item.href}>
+                  <Link href={item.href} passHref>
+                    <span className="nav-link" onClick={closeNav}>
+                      <FontAwesomeIcon icon={item.icon} />
+                      <span>{item.text}</span>
+                    </span>
+                  </Link>
+                </NavItem>
+              ))}
             </NavList>
           </nav>
         </div>
