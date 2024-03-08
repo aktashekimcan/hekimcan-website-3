@@ -185,9 +185,7 @@ const Header = () => {
               <SocialLink href="#" className="instagram">
                 <FontAwesomeIcon icon={faInstagram} />
               </SocialLink>
-              <SocialLink href="#" className="google-plus">
-                <FontAwesomeIcon icon={faSkype} />
-              </SocialLink>
+             
               <SocialLink href="#" className="linkedin">
                 <FontAwesomeIcon icon={faLinkedin} />
               </SocialLink>
