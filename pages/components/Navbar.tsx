@@ -8,7 +8,7 @@ import {
   faHome,
   faUser,
   faGraduationCap,
-  faTools,
+  faCode,
   faProjectDiagram,
   faEnvelope,
   faBars,
@@ -220,7 +220,7 @@ const Header = () => {
               <NavItem>
                 <Link href="/skills" passHref>
                   <span className="nav-link" onClick={closeNav}>
-                    <FontAwesomeIcon icon={faTools} />
+                    <FontAwesomeIcon icon={faCode} />
                     <span>Diller ve Araçlar</span>
                   </span>
                 </Link>
