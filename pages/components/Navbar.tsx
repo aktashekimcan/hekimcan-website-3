@@ -129,7 +129,11 @@ const NavList = styled.ul`
   margin: 0;
 `;
 
-const NavItem = styled.li`
+interface NavItemProps {
+  isActive: boolean;
+}
+
+const NavItem = styled.li<NavItemProps>`
   a {
     color: #fff;
     display: flex;
