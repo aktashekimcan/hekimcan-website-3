@@ -198,10 +198,10 @@ const About = () => {
   return (
     <>
       <Head>
-        <title>About - Hekim Aktaş's Portfolio</title>
+        <title>Hakkımda - Hekim Aktaş Portfolio</title>
         <meta
           name="description"
-          content="Hekim Aktaş Software Developer Portfolio About Page"
+          content="Hekim Aktaş Software Developer Portfolio Hakkımda Sayfası"
         />
       </Head>
       <AboutContainer>
@@ -247,10 +247,10 @@ const About = () => {
         </Card>
         <InfoCard>
           <div>
-            <h2>Full Stack Development</h2>
+            <h2>Full Stack Web Development</h2>
             <p>
               2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan
-              bir software developer'ım.
+              bir Software Developerım.
             </p>
           </div>
           <div>
