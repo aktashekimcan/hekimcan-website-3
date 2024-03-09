@@ -5,6 +5,7 @@ import {
   faBirthdayCake,
   faGlobe,
   faPhone,
+  faCity,
   faGraduationCap,
   faEnvelope,
   faMapMarkerAlt,
@@ -105,36 +106,33 @@ const Card = styled.div`
     }
   }
   @media (min-width: 769px) and (max-width: 1205px) {
-    flex-direction: column;
+    margin: 0 1rem; /* Sağ ve sol boşluk ekle */
+    width: auto; /* Genişliği içeriğe göre ayarla */
+    flex-direction: row;
     padding: 1rem;
     margin: 0.5rem;
-    width: calc(100% - 1rem);
 
     .info-section {
+      flex: 1; // info-section'ın esnekliğini ayarla
       align-items: stretch;
-
       h1 {
         font-size: 2rem;
       }
-
       .info {
         font-size: 0.9rem;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 0.5rem; // Artan alt boşluk
-
+        flex-direction: row; // İkon ve bilgileri yan yana düzenle
+        align-items: center;
+        margin-bottom: 0.5rem;
         .icon {
-          margin-bottom: 0.3rem;
+          margin-bottom: 0;
+          margin-right: 0.3rem; // İkon sağ boşluk
         }
-
         .label {
           font-weight: bold;
-          display: block; // Etiket ve değeri aynı satırda göstermek için
+          margin-right: 0.3rem; // Etiket sağ boşluk
         }
-
         .value {
           margin-left: 0;
-          display: block; // Etiket ve değeri aynı satırda göstermek için
         }
       }
     }
@@ -144,11 +142,21 @@ const Card = styled.div`
 const ProfileImage = styled.img`
   width: 100%;
   height: auto;
-  border: none; // Kenarlık kaldırıldı
+  border: none;
   border-radius: 20px;
+
+  // Diğer ekran boyutları için stil ayarları
   @media (min-width: 768px) {
     width: 350px; // Orta ve büyük ekranlarda sabit genişlik
     height: auto; // Orta ve büyük ekranlarda sabit yükseklik
+  }
+
+  // Belirtilen aralık için stil ayarları
+  @media (min-width: 769px) and (max-width: 1205px) {
+    width: 250px; // Profil resmini bu aralıkta daha da küçült
+    height: auto;
+    margin-bottom: 1rem; // Alt kısımda boşluk bırak
+    margin-right: 1rem;
   }
 `;
 
@@ -189,11 +197,11 @@ const InfoCard = styled(Card)`
 const About = () => {
   return (
     <>
-    <Head>
-        <title>Hakkımda- Hekim Aktaş Portfolio</title>
+      <Head>
+        <title>About - Hekim Aktaş's Portfolio</title>
         <meta
           name="description"
-          content="Hekim Aktaş Software Developer Portfolio Hakkımda Sayfası"
+          content="Hekim Aktaş Software Developer Portfolio About Page"
         />
       </Head>
       <AboutContainer>
@@ -242,7 +250,7 @@ const About = () => {
             <h2>Full Stack Development</h2>
             <p>
               2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan
-              bir Software Developerım.
+              bir software developer'ım.
             </p>
           </div>
           <div>
@@ -255,9 +263,9 @@ const About = () => {
             </p>
           </div>
         </InfoCard>
-     <InfoCard>
+        <InfoCard>
           <div>
-            <h2>Tutku &amp; Kararlılık</h2>
+            <h2>Tutku & Kararlılık</h2>
             <p>
               Yenilikçi çözümler sunmak, karmaşık problemleri çözmek ve
               kullanıcı dostu, etkili web uygulamaları geliştirmek benim için
@@ -266,8 +274,8 @@ const About = () => {
               taşlarından.
             </p>
           </div>
-        <div>
-            <h2>Analytics &amp; Problem Solving</h2>
+          <div>
+            <h2>Analytics & Problem Solving</h2>
             <p>
               Zorlukların üstesinden gelmek için güçlü analitik yetenekler ve
               sistematik problem çözme yaklaşımları geliştirdim. Verileri hızla
