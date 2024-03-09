@@ -220,9 +220,9 @@ const About = () => {
             </p>
           </div>
         </InfoCard>
-        <InfoCard>
+     <InfoCard>
           <div>
-            <h2>Tutku & Kararlılık</h2>
+            <h2>Tutku &amp; Kararlılık</h2>
             <p>
               Yenilikçi çözümler sunmak, karmaşık problemleri çözmek ve
               kullanıcı dostu, etkili web uygulamaları geliştirmek benim için
@@ -232,7 +232,7 @@ const About = () => {
             </p>
           </div>
           <div>
-            <h2>Analytics & Problem Solving</h2>
+            <h2>Analytics &amp; Problem Solving</h2>
             <p>
               Zorlukların üstesinden gelmek için güçlü analitik yetenekler ve
               sistematik problem çözme yaklaşımları geliştirdim. Verileri hızla
