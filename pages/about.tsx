@@ -5,7 +5,6 @@ import {
   faBirthdayCake,
   faGlobe,
   faPhone,
-  faCity,
   faGraduationCap,
   faEnvelope,
   faMapMarkerAlt,
@@ -156,10 +155,10 @@ const About = () => {
   return (
     <>
       <Head>
-        <title>About - Hekim Aktaş's Portfolio</title>
+        <title>Hakkımda- Hekim Aktaş Portfolio</title>
         <meta
           name="description"
-          content="Hekim Aktaş Software Developer Portfolio About Page"
+          content="Hekim Aktaş Software Developer Portfolio Hakkımda Sayfası"
         />
       </Head>
       <AboutContainer>
