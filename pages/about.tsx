@@ -154,7 +154,7 @@ const InfoCard = styled(Card)`
 const About = () => {
   return (
     <>
-      <Head>
+    <Head>
         <title>Hakkımda- Hekim Aktaş Portfolio</title>
         <meta
           name="description"
@@ -207,7 +207,7 @@ const About = () => {
             <h2>Full Stack Development</h2>
             <p>
               2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan
-              bir software developer'ım.
+              bir Software Developerım.
             </p>
           </div>
           <div>
@@ -231,7 +231,7 @@ const About = () => {
               taşlarından.
             </p>
           </div>
-          <div>
+        <div>
             <h2>Analytics &amp; Problem Solving</h2>
             <p>
               Zorlukların üstesinden gelmek için güçlü analitik yetenekler ve
