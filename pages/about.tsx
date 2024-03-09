@@ -104,6 +104,41 @@ const Card = styled.div`
       }
     }
   }
+  @media (min-width: 769px) and (max-width: 1205px) {
+    flex-direction: column;
+    padding: 1rem;
+    margin: 0.5rem;
+    width: calc(100% - 1rem);
+
+    .info-section {
+      align-items: stretch;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .info {
+        font-size: 0.9rem;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 0.5rem; // Artan alt boşluk
+
+        .icon {
+          margin-bottom: 0.3rem;
+        }
+
+        .label {
+          font-weight: bold;
+          display: block; // Etiket ve değeri aynı satırda göstermek için
+        }
+
+        .value {
+          margin-left: 0;
+          display: block; // Etiket ve değeri aynı satırda göstermek için
+        }
+      }
+    }
+  }
 `;
 
 const ProfileImage = styled.img`
