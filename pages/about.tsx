@@ -137,6 +137,11 @@ const Card = styled.div`
       }
     }
   }
+  @media (min-width: 769px) and (max-width: 829px) {
+    padding: 1rem;
+    margin: 0.5rem;
+    width: auto; /* Genişliği içeriğe göre ayarla */
+  }
 `;
 
 const ProfileImage = styled.img`
@@ -158,7 +163,14 @@ const ProfileImage = styled.img`
     margin-bottom: 1rem; // Alt kısımda boşluk bırak
     margin-right: 1rem;
   }
+  @media (min-width: 769px) and (max-width: 829px) {
+    width: 200px; /* Profil resmini bu aralıkta daha da küçült */
+    height: auto;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+  }
 `;
+
 
 const InfoCard = styled(Card)`
   display: grid;
