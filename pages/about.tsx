@@ -224,7 +224,7 @@ const About = () => {
           />
           <div className="info-section">
             <h1>Hekim Aktaş</h1>
-            <p>Jr.Full Stack Web Developer & Jr.Data Scientist</p>
+            <p>Jr.Full Stack Web Developer</p>
             <div className="info">
               <FontAwesomeIcon icon={faBirthdayCake} className="icon" />
               <span className="label">Doğum Günü:</span>
