@@ -193,7 +193,7 @@ const Header = () => {
         <div className="d-flex flex-column">
           <div className="profile">
             <ProfileImage
-              src="https://scontent.fesb7-1.fna.fbcdn.net/v/t39.30808-6/273499217_4790860821004008_555242861065204042_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=5f2048&_nc_ohc=a8TiNCxXsr0AX9BKryh&_nc_ht=scontent.fesb7-1.fna&oh=00_AfAdLddhWmJ5V-lWj2ZGz1TPHUdgKiexi-0HPAyn0lFEdQ&oe=65EE101D"
+              src="https://media.licdn.com/dms/image/D4E03AQGXmGkqP3kSGA/profile-displayphoto-shrink_200_200/0/1709712082289?e=1715817600&v=beta&t=A6r4LPpny0aFSEKi4n0APCmQeQNYJgaVjinCUm5eqkY"
               alt=""
               className="img-fluid rounded-circle"
             />
