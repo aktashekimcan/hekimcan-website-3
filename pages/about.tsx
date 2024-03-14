@@ -225,11 +225,7 @@ const About = () => {
           <div className="info-section">
             <h1>Hekim Aktaş</h1>
             <p>Jr.Full Stack Web Developer</p>
-            <div className="info">
-              <FontAwesomeIcon icon={faBirthdayCake} className="icon" />
-              <span className="label">Doğum Günü:</span>
-              <span className="value">2 Eylül 2003</span>
-            </div>
+           
             <div className="info">
               <FontAwesomeIcon icon={faGlobe} className="icon" />
               <span className="label">Website:</span>
