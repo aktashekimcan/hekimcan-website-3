@@ -1,10 +1,9 @@
-// pages/_app.tsx veya components/Header.tsx gibi uygun bir dosya
-
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
+import { useContext } from "react";
+import { SidebarContext } from "../_app";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -15,6 +14,8 @@ import {
   faEnvelope,
   faBars,
   faTimes,
+  faChevronLeft,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faXTwitter as faTwitter,
@@ -26,11 +27,98 @@ import {
 const commonTransition = css`
   transition: all 0.3s ease;
 `;
+const calculateHoverTextPosition = (isOpen) => {
+  return isOpen ? "50%" : "calc(50% + 30px)"; // Adjust '20px' to move it to the right
+};
+const VerticalBarIcon = styled.div`
+  height: 24px;
+  width: 4px; // Increased width for a thicker line
+  background-color: #ccc; // Grey color
+  position: absolute;
+  left: 50%;
+  border-radius: 10px;
+  transform: translateX(-50%);
+`;
+const SidebarToggleButton = styled.button`
+  display: none; // Start by hiding the button
+  position: fixed;
+  right: 200px;
+  top: calc(50% - 20px); // Position the button from the top
+  z-index: 9999;
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  right: ${(props) => (props.isOpen ? "1180px" : "1480px")};
 
+  color: #ccc;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 769px) {
+    // Show the button only on screens wider than 768px
+    display: flex;
+  }
+
+  &:hover {
+    // This will change the icon color to black on hover
+    color: #000;
+  }
+
+  // This will show the right-chevron when the sidebar is open and the left-chevron when it's closed.
+  // It defaults to the bar icon when not hovered.
+  .icon-default {
+    display: block;
+  }
+
+  .icon-hover {
+    display: none;
+  }
+
+  &:hover .icon-default {
+    display: none;
+  }
+
+  &:hover .icon-hover {
+    display: block;
+  }
+
+  .hover-text {
+    display: block; // Make sure the text is always displayed
+    position: absolute;
+    bottom: 100%; // Position it above the button
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap; // Keep the text on one line
+    padding: 8px;
+    font-size: 14px;
+    background-color: #000; // Background color of the text
+    color: #fff; // Text color
+    border-radius: 10px; // Rounded corners
+    z-index: 10; // Make sure it's above other elements
+    left: ${(props) => calculateHoverTextPosition(props.isOpen)};
+
+    // Hide the text initially
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  &:hover .hover-text {
+    opacity: 1; // Show the text on hover
+    visibility: visible; // Make it visible on hover
+  }
+
+  ${commonTransition};
+`;
 const MobileNavToggle = styled.button`
   display: none; // Başlangıçta butonu gizle
   position: fixed;
-  right: 15px;
+  right: 15px; // Stay on the top right
   top: 15px;
   z-index: 9999;
   border: none;
@@ -72,6 +160,12 @@ const HeaderContainer = styled.header<HeaderContainerProps>`
   @media (max-width: 768px) {
     transform: translateX(${(props) => (props.isOpen ? "0" : "-100%")});
     width: 80%;
+  }
+
+  @media (min-width: 769px) {
+    transform: translateX(
+      ${(props) => (props.isOpen ? "0" : "-300px")}
+    ); // Adjust the "300px" based on your sidebar width
   }
 
   ${commonTransition};
@@ -169,11 +263,14 @@ const NavItem = styled.li<NavItemProps>`
 
 // Header Component
 const Header = () => {
-  const [isNavOpen, setIsNavOpen] = useState(false);
+  const { isNavOpen, setIsNavOpen } = useContext(SidebarContext);
+  const [hover, setHover] = useState(false);
 
   const closeNav = () => {
     setIsNavOpen(false);
   };
+  const [hoverText, setHoverText] = useState("");
+
   const router = useRouter();
   const menuItems = [
     { href: "/", icon: faHome, text: "Ana Sayfa" },
@@ -189,6 +286,7 @@ const Header = () => {
       <MobileNavToggle onClick={() => setIsNavOpen(!isNavOpen)}>
         <FontAwesomeIcon icon={isNavOpen ? faTimes : faBars} />
       </MobileNavToggle>
+
       <HeaderContainer isOpen={isNavOpen} id="header">
         <div className="d-flex flex-column">
           <div className="profile">
@@ -232,6 +330,22 @@ const Header = () => {
           </nav>
         </div>
       </HeaderContainer>
+      <SidebarToggleButton
+        isOpen={isNavOpen}
+        onClick={() => setIsNavOpen(!isNavOpen)}
+        onMouseEnter={() =>
+          setHoverText(isNavOpen ? "Menüyü kapat" : "Menüyü aç")
+        }
+        onMouseLeave={() => setHoverText("")}
+      >
+        <VerticalBarIcon className="icon-default" />
+        <FontAwesomeIcon
+          icon={isNavOpen ? faChevronLeft : faChevronRight}
+          className="icon-hover"
+        />
+        {/* Add hover text spans */}
+        <span className="hover-text">{hoverText}</span>
+      </SidebarToggleButton>
     </>
   );
 };
