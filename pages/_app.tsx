@@ -1,5 +1,5 @@
 // pages/_app.tsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,15 +9,25 @@ import Loader from "./components/LoadingAnimation"; // Yükleyici bileşeni
 import "../styles/globals.css";
 import styled from "styled-components";
 const MainContent = styled.main`
-  margin-left: 300px;
+  transition: margin-left 0.3s ease; // Smooth transition for the margin
+  margin-left: ${(props) =>
+    props.isNavOpen
+      ? "300px"
+      : "0"}; // Dynamic margin based on the sidebar state
 
   @media (max-width: 768px) {
     margin-left: 0;
   }
 `;
 
+export const SidebarContext = createContext({
+  isNavOpen: false,
+  setIsNavOpen: (state: boolean) => {},
+});
+
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
+  const [isNavOpen, setIsNavOpen] = useState(true); // Added state for sidebar
   const router = useRouter();
 
   useEffect(() => {
@@ -85,11 +95,13 @@ function MyApp({ Component, pageProps }) {
         <Loader />
       ) : (
         <>
-          <Navbar />
-          <MainContent>
-            <Component {...pageProps} />
-            <Footer />
-          </MainContent>
+          <SidebarContext.Provider value={{ isNavOpen, setIsNavOpen }}>
+            <Navbar />
+            <MainContent isNavOpen={isNavOpen}>
+              <Component {...pageProps} />
+              <Footer />
+            </MainContent>
+          </SidebarContext.Provider>
         </>
       )}
     </>
