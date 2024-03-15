@@ -27,6 +27,10 @@ import {
 const commonTransition = css`
   transition: all 0.3s ease;
 `;
+interface SidebarToggleButtonProps {
+  isOpen: boolean;
+}
+
 const calculateHoverTextPosition = (isOpen) => {
   return isOpen ? "50%" : "calc(50% + 30px)"; // Adjust '20px' to move it to the right
 };
@@ -39,7 +43,7 @@ const VerticalBarIcon = styled.div`
   border-radius: 10px;
   transform: translateX(-50%);
 `;
-const SidebarToggleButton = styled.button`
+const SidebarToggleButton = styled.button<SidebarToggleButtonProps>`
   display: none; // Start by hiding the button
   position: fixed;
   right: 200px;
