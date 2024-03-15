@@ -8,12 +8,14 @@ import Footer from "./components/Footer";
 import Loader from "./components/LoadingAnimation"; // Yükleyici bileşeni
 import "../styles/globals.css";
 import styled from "styled-components";
-const MainContent = styled.main`
+interface MainContentProps {
+  isNavOpen: boolean;
+}
+
+// Update your styled component to use the props interface
+const MainContent = styled.main<MainContentProps>`
   transition: margin-left 0.3s ease; // Smooth transition for the margin
-  margin-left: ${(props) =>
-    props.isNavOpen
-      ? "300px"
-      : "0"}; // Dynamic margin based on the sidebar state
+  margin-left: ${(props) => (props.isNavOpen ? "300px" : "0")}; // Dynamic margin based on the sidebar state
 
   @media (max-width: 768px) {
     margin-left: 0;
