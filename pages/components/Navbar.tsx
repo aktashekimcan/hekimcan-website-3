@@ -43,7 +43,7 @@ const VerticalBarIcon = styled.div`
   border-radius: 10px;
   transform: translateX(-50%);
 `;
-const SidebarToggleButton = styled.button<SidebarToggleButtonProps>`
+const SidebarToggleButton = styled.button`
   display: none; // Start by hiding the button
   position: fixed;
   right: 200px;
@@ -118,30 +118,18 @@ const SidebarToggleButton = styled.button<SidebarToggleButtonProps>`
   }
 
   ${commonTransition};
-`;
-const MobileNavToggle = styled.button`
-  display: none; // Başlangıçta butonu gizle
-  position: fixed;
-  right: 15px; // Stay on the top right
-  top: 15px;
-  z-index: 9999;
-  border: none;
-  background: #149ddd;
-  border-radius: 50%;
-  font-size: 24px;
-  color: #fff;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-
-  @media (max-width: 768px) {
-    // 768px altında butonu göster
+  @media (min-width: 768px) and (max-width: 1224px) {
     display: flex;
+    right: ${(props) =>
+      props.isOpen ? "calc(100vw - 350px)" : "calc(100vw - 50px)"};
   }
 
-  ${commonTransition};
+  // 1224px ve üzeri ekran genişliklerinde butonu göster
+  @media (min-width: 1224px) {
+    display: flex;
+    right: ${(props) =>
+      props.isOpen ? "calc(100vw - 350px)" : "calc(100vw - 50px)"};
+  }
 `;
 
 interface HeaderContainerProps {
