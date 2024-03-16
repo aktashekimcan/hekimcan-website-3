@@ -43,23 +43,38 @@ const VerticalBarIcon = styled.div`
   border-radius: 10px;
   transform: translateX(-50%);
 `;
-const SidebarToggleButton = styled.button`
-  display: none; // Start by hiding the button
+interface SidebarToggleButtonProps {
+  isOpen: boolean;
+}
+
+// Styled component'i bu arayüzü kullanacak şekilde tanımla
+const SidebarToggleButton = styled.button<SidebarToggleButtonProps>`
+  display: none; // Başlangıçta butonu gizle
   position: fixed;
-  right: 200px;
-  top: calc(50% - 20px); // Position the button from the top
+  top: calc(50% - 20px);
   z-index: 9999;
   border: none;
   background: transparent;
   font-size: 24px;
-  right: ${(props) => (props.isOpen ? "1180px" : "1480px")};
-
   color: #ccc;
   cursor: pointer;
   width: 40px;
   height: 40px;
   justify-content: center;
   align-items: center;
+
+  // Ekran genişliğine göre butonun görünürlüğünü ve konumunu ayarla
+  @media (min-width: 768px) and (max-width: 1224px) {
+    display: flex;
+    right: ${(props) =>
+      props.isOpen ? "calc(100vw - 350px)" : "calc(100vw - 50px)"};
+  }
+
+  @media (min-width: 1224px) {
+    display: flex;
+    right: ${(props) =>
+      props.isOpen ? "calc(100vw - 350px)" : "calc(100vw - 50px)"};
+  }
 
   @media (min-width: 769px) {
     // Show the button only on screens wider than 768px
@@ -118,18 +133,6 @@ const SidebarToggleButton = styled.button`
   }
 
   ${commonTransition};
-  @media (min-width: 768px) and (max-width: 1224px) {
-    display: flex;
-    right: ${(props) =>
-      props.isOpen ? "calc(100vw - 350px)" : "calc(100vw - 50px)"};
-  }
-
-  // 1224px ve üzeri ekran genişliklerinde butonu göster
-  @media (min-width: 1224px) {
-    display: flex;
-    right: ${(props) =>
-      props.isOpen ? "calc(100vw - 350px)" : "calc(100vw - 50px)"};
-  }
 `;
 const MobileNavToggle = styled.button`
   display: none; // Başlangıçta butonu gizle
