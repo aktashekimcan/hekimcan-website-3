@@ -8,14 +8,12 @@ import Footer from "./components/Footer";
 import Loader from "./components/LoadingAnimation"; // Yükleyici bileşeni
 import "../styles/globals.css";
 import styled from "styled-components";
-interface MainContentProps {
-  isNavOpen: boolean;
-}
-
-// Update your styled component to use the props interface
-const MainContent = styled.main<MainContentProps>`
+const MainContent = styled.main`
   transition: margin-left 0.3s ease; // Smooth transition for the margin
-  margin-left: ${(props) => (props.isNavOpen ? "300px" : "0")}; // Dynamic margin based on the sidebar state
+  margin-left: ${(props) =>
+    props.isNavOpen
+      ? "300px"
+      : "0"}; // Dynamic margin based on the sidebar state
 
   @media (max-width: 768px) {
     margin-left: 0;
@@ -29,7 +27,8 @@ export const SidebarContext = createContext({
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
-  const [isNavOpen, setIsNavOpen] = useState(true); // Added state for sidebar
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  // Added state for sidebar
   const router = useRouter();
 
   useEffect(() => {
@@ -41,6 +40,24 @@ function MyApp({ Component, pageProps }) {
       setLoading(false);
     }
   }, [router.pathname]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      // If the window is wider than 768px, open the sidebar by default
+      if (window.innerWidth > 768) {
+        setIsNavOpen(true);
+      } else {
+        setIsNavOpen(false);
+      }
+    };
+    handleResize();
+
+    // Add the event listener for subsequent resize events
+    window.addEventListener("resize", handleResize);
+
+    // Remove the event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
