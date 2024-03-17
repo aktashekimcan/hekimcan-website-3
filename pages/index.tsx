@@ -68,7 +68,7 @@ const HeroSection = styled.section`
 const Hero = () => {
   useEffect(() => {
     const typed = new Typed(".typed", {
-      strings: ["Hekim Aktaş","Yazılım Mühendisliği Öğrencisi", "Jr.Full Stack Web Developer"],
+      strings: ["Hekim Aktaş","Yazılım Mühendisi", "Jr.Full Stack Web Developer"],
       loop: true,
       typeSpeed: 100,
       backSpeed: 50,
