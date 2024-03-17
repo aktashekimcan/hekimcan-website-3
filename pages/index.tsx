@@ -177,21 +177,21 @@ const AnimatedTitle = ({ text }) => {
       >
         {char}
       </span>
-    ),
+    )
   );
 
-  const titleRef = useRef<HTMLHeadingElement>(null);
+  const titleRef = useRef();
 
-  useEffect(() => {
+useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting) {
-          titleRef.current?.style.animationPlayState = "running";
-          titleRef.current?.childNodes.forEach((child: any) => {
-            if (child.style) child.style.animationPlayState = "running";
+        if (entry.isIntersecting && titleRef.current) { // titleRef.current null veya undefined değilse kontrol ediliyor
+          titleRef.current.style.animationPlayState = "running";
+          titleRef.current.childNodes.forEach((child: any) => {
+            if (child.style) child.style.animationPlayState = "running"; // child.style varsa kontrol ediliyor
           });
-          observer.unobserve(entry.target);
+          observer.unobserve(entry.target); // Animasyon başladıktan sonra observer'ı kaldır
         }
       },
       { threshold: 0.5 },
@@ -206,7 +206,6 @@ const AnimatedTitle = ({ text }) => {
 
   return <h2 ref={titleRef}>{letters}</h2>;
 };
-
 const FeaturedProjects = () => (
   <FeaturedProjectsSection id="featuredProjects">
     <AnimatedTitle text="Öne Çıkan Projelerim" />
