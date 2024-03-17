@@ -175,28 +175,30 @@ const AnimatedTitle = ({ text }: { text: string }) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        if (entry.isIntersecting && titleRef.current) {
-          titleRef.current.style.animationPlayState = 'running';
-          titleRef.current.childNodes.forEach((child) => {
-            if (child instanceof Element && child.style) {
-              child.style.animationPlayState = 'running';
-            }
-          });
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.5 },
-    );
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const [entry] = entries;
+      if (entry.isIntersecting && titleRef.current) {
+        titleRef.current.style.animationPlayState = 'running';
+        titleRef.current.childNodes.forEach((child) => {
+          // child HTMLElement türünde mi kontrol ediliyor
+          if (child instanceof HTMLElement) {
+            child.style.animationPlayState = 'running';
+          }
+        });
+        observer.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.5 },
+  );
 
-    if (titleRef.current) {
-      observer.observe(titleRef.current);
-    }
+  if (titleRef.current) {
+    observer.observe(titleRef.current);
+  }
 
-    return () => observer.disconnect();
-  }, []);
+  return () => observer.disconnect();
+}, []);
+
 
   return <h2 ref={titleRef}>{letters}</h2>;
 };
