@@ -160,7 +160,6 @@ const ScrollButton = styled.button`
   }
 `;
 const AnimatedTitle = ({ text }) => {
-  // Boşlukları koruyarak metni harflere ayır
   const letters = text.split("").map((char, index) =>
     char === " " ? (
       <span
@@ -178,7 +177,7 @@ const AnimatedTitle = ({ text }) => {
       >
         {char}
       </span>
-    ),
+    )
   );
 
   const titleRef = useRef();
@@ -187,15 +186,17 @@ const AnimatedTitle = ({ text }) => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && titleRef.current) {
           titleRef.current.style.animationPlayState = "running";
           titleRef.current.childNodes.forEach((child) => {
-            child.style.animationPlayState = "running";
+            if (child.style) {
+              child.style.animationPlayState = "running";
+            }
           });
-          observer.unobserve(entry.target); // Animasyon başladıktan sonra observer'ı kaldır
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.5 },
+      { threshold: 0.5 }
     );
 
     if (titleRef.current) {
@@ -207,7 +208,6 @@ const AnimatedTitle = ({ text }) => {
 
   return <h2 ref={titleRef}>{letters}</h2>;
 };
-
 const FeaturedProjects = () => (
   <FeaturedProjectsSection id="featuredProjects">
     <AnimatedTitle text="Öne Çıkan Projelerim" />
