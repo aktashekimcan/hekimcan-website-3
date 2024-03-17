@@ -159,39 +159,33 @@ const ScrollButton = styled.button`
     background-color: #0f5c55;
   }
 `;
-const AnimatedTitle = ({ text }) => {
-  const letters = text.split("").map((char, index) =>
-    char === " " ? (
-      <span
-        key={index}
-        className="space"
-        style={{ display: "inline-block", width: "0.5em" }}
-      >
+const AnimatedTitle = ({ text }: { text: string }) => {
+  const letters = text.split('').map((char, index) =>
+    char === ' ' ? (
+      <span key={index} style={{ display: 'inline-block', width: '0.5em' }}>
         &nbsp;
       </span>
     ) : (
-      <span
-        key={index}
-        className="letter"
-        style={{ animationDelay: `${0.1 * index}s` }}
-      >
+      <span key={index} className="letter" style={{ animationDelay: `${0.1 * index}s` }}>
         {char}
       </span>
-    )
+    ),
   );
 
-  const titleRef = useRef();
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
-useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        if (entry.isIntersecting && titleRef.current) { // titleRef.current null veya undefined değilse kontrol ediliyor
-          titleRef.current.style.animationPlayState = "running";
-          titleRef.current.childNodes.forEach((child: any) => {
-            if (child.style) child.style.animationPlayState = "running"; // child.style varsa kontrol ediliyor
+        if (entry.isIntersecting && titleRef.current) {
+          titleRef.current.style.animationPlayState = 'running';
+          titleRef.current.childNodes.forEach((child) => {
+            if (child instanceof Element && child.style) {
+              child.style.animationPlayState = 'running';
+            }
           });
-          observer.unobserve(entry.target); // Animasyon başladıktan sonra observer'ı kaldır
+          observer.unobserve(entry.target);
         }
       },
       { threshold: 0.5 },
