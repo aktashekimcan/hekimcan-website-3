@@ -3,6 +3,8 @@ import styled, { keyframes } from "styled-components";
 import Typed from "typed.js";
 const video1Url = "/videos/video-1.mp4";
 const video2Url = "/videos/video-2.mp4";
+const video3Url = "/videos/video-4.mp4"; // Assuming you have this file in your public/videos folder
+const video4Url = "/videos/video-3.mp4"; // Assuming you have this file in your public/videos folder
 const backgroundImageUrl =
   "https://media.licdn.com/dms/image/D4D16AQF1QKld3LUC0Q/profile-displaybackgroundimage-shrink_350_1400/0/1697048712098?e=1715212800&v=beta&t=u-D9xP9LHWyNdCXJ7wKN2c6bovxOgqyvw1xVtq-UWM4";
 
@@ -143,6 +145,17 @@ const FeaturedProjectsSection = styled.section`
       width: 45%; // Büyük ekranlarda yan yana iki video
     }
   }
+  .project-card {
+    background-color: #333;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin-bottom: 20px;
+    // Genişlik sınırlama ve merkezleme için eklenen stiller
+    width: 80%; // Genişliği sınırla
+    max-width: 1100px; // Maksimum genişlik
+    margin: 20px auto; // Üst-alt marjin ile merkezde
+  }
 `;
 const ScrollButton = styled.button`
   padding: 10px 20px;
@@ -160,13 +173,17 @@ const ScrollButton = styled.button`
   }
 `;
 const AnimatedTitle = ({ text }: { text: string }) => {
-  const letters = text.split('').map((char, index) =>
-    char === ' ' ? (
-      <span key={index} style={{ display: 'inline-block', width: '0.5em' }}>
+  const letters = text.split("").map((char, index) =>
+    char === " " ? (
+      <span key={index} style={{ display: "inline-block", width: "0.5em" }}>
         &nbsp;
       </span>
     ) : (
-      <span key={index} className="letter" style={{ animationDelay: `${0.1 * index}s` }}>
+      <span
+        key={index}
+        className="letter"
+        style={{ animationDelay: `${0.1 * index}s` }}
+      >
         {char}
       </span>
     ),
@@ -175,44 +192,55 @@ const AnimatedTitle = ({ text }: { text: string }) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      const [entry] = entries;
-      if (entry.isIntersecting && titleRef.current) {
-        titleRef.current.style.animationPlayState = 'running';
-        titleRef.current.childNodes.forEach((child) => {
-          // child HTMLElement türünde mi kontrol ediliyor
-          if (child instanceof HTMLElement) {
-            child.style.animationPlayState = 'running';
-          }
-        });
-        observer.unobserve(entry.target);
-      }
-    },
-    { threshold: 0.5 },
-  );
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && titleRef.current) {
+          titleRef.current.style.animationPlayState = "running";
+          titleRef.current.childNodes.forEach((child) => {
+            // child HTMLElement türünde mi kontrol ediliyor
+            if (child instanceof HTMLElement) {
+              child.style.animationPlayState = "running";
+            }
+          });
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.5 },
+    );
 
-  if (titleRef.current) {
-    observer.observe(titleRef.current);
-  }
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
 
-  return () => observer.disconnect();
-}, []);
-
+    return () => observer.disconnect();
+  }, []);
 
   return <h2 ref={titleRef}>{letters}</h2>;
 };
 const FeaturedProjects = () => (
   <FeaturedProjectsSection id="featuredProjects">
     <AnimatedTitle text="Öne Çıkan Projelerim" />
-    <div className="videos-container">
-      <div className="video-wrapper">
+    <div className="videos-container project-card">
+      {/* Existing video wrappers */}
+      <div className="video-wrapper ">
         <div className="video-title">Instagram Clone - Frontend Projesi</div>
         <video src={video1Url} controls autoPlay muted loop></video>
       </div>
       <div className="video-wrapper">
         <div className="video-title">Netflix Clone - Frontend Projesi</div>
         <video src={video2Url} controls autoPlay muted loop></video>
+      </div>
+      {/* New video wrappers */}
+      <div className="video-wrapper">
+        <div className="video-title">2D Futbol Oyunu Projesi - Python</div>
+        <video src={video3Url} controls autoPlay muted loop></video>
+      </div>
+      <div className="video-wrapper">
+        <div className="video-title">
+          QR Code Menu Projesi - Frontend Projesi
+        </div>
+        <video src={video4Url} controls autoPlay muted loop></video>
       </div>
     </div>
   </FeaturedProjectsSection>
@@ -224,7 +252,7 @@ const Hero = () => {
       strings: [
         "Hekim Aktaş",
         "Yazılım Mühendisi",
-        "Jr.Full Stack Web Developer"
+        "Jr.Full Stack Web Developer",
       ],
       loop: true,
       typeSpeed: 100,
