@@ -219,7 +219,7 @@ const About = () => {
       <AboutContainer>
         <Card>
           <ProfileImage
-            src="https://scontent.fesb7-1.fna.fbcdn.net/v/t39.30808-6/273762295_4809138162509607_8738308158712443924_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=xzUetBW3jksAX_LCIIR&_nc_ht=scontent.fesb7-1.fna&oh=00_AfBryiX1YvKJEP1eQqqvBX43FbRFGXVQqC4YRFypIF2a8g&oe=65F6DB2F"
+            src="https://scontent.fadb6-5.fna.fbcdn.net/v/t39.30808-6/273762295_4809138162509607_8738308158712443924_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GMEtIX93GvsAX-yTgxn&_nc_ht=scontent.fadb6-5.fna&oh=00_AfCXYTcvOwIEXO60gPZshsWSt_TI3wb-tA1QK1M4BmKEFA&oe=65FEC42F"
             alt="Profile Image"
           />
           <div className="info-section">
