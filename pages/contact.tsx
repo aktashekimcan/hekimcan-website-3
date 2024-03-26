@@ -1,8 +1,8 @@
 import React from "react";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
-import {  AiOutlineMail, AiFillEnvironment } from "react-icons/ai";
+import { AiOutlineMail, AiFillEnvironment } from "react-icons/ai";
 import { FaMobileAlt } from "react-icons/fa";
-import Head from 'next/head'; // next/head import ediliyor
+import Head from "next/head"; // next/head import ediliyor
 
 const rgbAnimation = keyframes`
   0% { background-position: 0% 50%; }
@@ -169,13 +169,8 @@ const StyledButton = styled.button`
 const ContactForm: React.FC = () => {
   return (
     <>
-      <Head>
-        <title>İletişim Formu</title>
-        <meta name="description" content="Hekim Can Aktaş ile iletişim kurun" />
-        {/* Buraya istediğiniz diğer head etiketlerini ekleyebilirsiniz */}
-      </Head>
       <GlobalStyle />
-      <FormContainer>
+      <FormContainer id="contact">
         <h1>Bana Ulaş</h1>
         <form>
           <div className="mb-3">
