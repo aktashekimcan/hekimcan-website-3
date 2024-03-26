@@ -1,12 +1,12 @@
 import React from "react";
-import Image from 'next/image';
+import Image from "next/image";
 
 import styled, { keyframes } from "styled-components";
 import { FaBootstrap, FaGit, FaJava } from "react-icons/fa";
 import Head from "next/head";
 
 const Container = styled.div`
-  background-color: #222;
+  background-color: #121212;
   min-height: 100vh;
   display: flex;
   justify-content: center; // Merkezde hizalama
@@ -150,16 +150,17 @@ const Skills: React.FC = () => {
       alt="Html5"
       width={100}
       height={100}
-    />
-,
+    />,
     <Image
-      key="css3" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg"
+      key="css3"
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg"
       alt="CSS3"
       width={100}
       height={100}
     />,
     <Image
-      key="js" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
+      key="js"
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
       alt="JavaScript"
       width={100}
       height={100}
@@ -186,25 +187,25 @@ const Skills: React.FC = () => {
       height={100}
     />,
 
-
     <Image
-      key="sass" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg"
+      key="sass"
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg"
       width={100}
       height={100}
       alt="Sass"
     />,
-    <IconWrapper color="#563d7c" key ="bootstrap">
+    <IconWrapper color="#563d7c" key="bootstrap">
       <FaBootstrap />
     </IconWrapper>,
 
-    <IconWrapper color="#f34f29" key ="git">
+    <IconWrapper color="#f34f29" key="git">
       <FaGit />
     </IconWrapper>,
     <IconWrapper color="#007acc" key="java">
       <FaJava />
     </IconWrapper>,
 
-    <Image 
+    <Image
       key="tailwind"
       src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg"
       alt="Tailwind CSS"
@@ -226,14 +227,15 @@ const Skills: React.FC = () => {
       height={100}
     />,
     <Image
-      key="cplusplus" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
+      key="cplusplus"
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg"
       alt="C++"
       width={100}
       height={100}
     />,
     <Image
-    key="python"    
-  src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
+      key="python"
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
       alt="Python"
       width={100}
       height={100}
@@ -249,6 +251,8 @@ const Skills: React.FC = () => {
       key="csharp"
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg"
       alt="C#"
+      width={100}
+      height={100}
     />,
     <Image
       key="dotnet"
@@ -259,24 +263,28 @@ const Skills: React.FC = () => {
     />,
     <Image
       key="nodejs"
+      width={100}
+      height={100}
       src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg"
       alt="Node.js"
     />,
     <Image
-     key="mysql"     
- src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg"
+      key="mysql"
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg"
       alt="MySQL"
       width={100}
       height={100}
     />,
     <Image
-      key ="ms-sql" src="https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg"
+      key="ms-sql"
+      src="https://www.svgrepo.com/show/303229/microsoft-sql-server-logo.svg"
       alt="MS SQL Server"
       width={100}
       height={100}
     />,
     <Image
-      key="mongodb" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
+      key="mongodb"
+      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
       alt="MongoDB"
       width={100}
       height={100}
@@ -284,10 +292,8 @@ const Skills: React.FC = () => {
   ];
 
   return (
-    <Container>
-      <Head>
-        <title>Diller ve Araçlar</title>
-      </Head>
+    <Container id="skills">
+      
       <SkillsContainer>
         <SkillsHeading>Diller ve Araçlar</SkillsHeading>
         {skillIcons.map((icon, index) => (
