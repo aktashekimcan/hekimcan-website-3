@@ -83,10 +83,7 @@ const SidebarToggleButton = styled.button<SidebarToggleButtonProps>`
     display: flex;
   }
 
-  &:hover {
-    // This will change the icon color to black on hover
-    color: #000;
-  }
+ 
 
   // This will show the right-chevron when the sidebar is open and the left-chevron when it's closed.
   // It defaults to the bar icon when not hovered.
