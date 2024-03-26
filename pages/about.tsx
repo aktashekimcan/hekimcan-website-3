@@ -23,7 +23,7 @@ const AboutContainer = styled.div`
 `;
 
 const Card = styled.div`
-  background-color: #1e1e1e;
+  background-color: #121212;
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 2rem; // Standart iç boşluk
@@ -171,7 +171,6 @@ const ProfileImage = styled.img`
   }
 `;
 
-
 const InfoCard = styled(Card)`
   display: grid;
   grid-template-columns: 1fr;
@@ -209,23 +208,20 @@ const InfoCard = styled(Card)`
 const About = () => {
   return (
     <>
-      <Head>
-        <title>Hakkımda - Hekim Aktaş Portfolio</title>
-        <meta
-          name="description"
-          content="Hekim Aktaş Software Developer Portfolio Hakkımda Sayfası"
-        />
-      </Head>
-      <AboutContainer>
+      <AboutContainer id="about">
         <Card>
           <ProfileImage
-            src="https://scontent.fadb6-5.fna.fbcdn.net/v/t39.30808-6/273762295_4809138162509607_8738308158712443924_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GMEtIX93GvsAX-yTgxn&_nc_ht=scontent.fadb6-5.fna&oh=00_AfCXYTcvOwIEXO60gPZshsWSt_TI3wb-tA1QK1M4BmKEFA&oe=65FEC42F"
+            src="https://scontent.fadb6-5.fna.fbcdn.net/v/t39.30808-6/273762295_4809138162509607_8738308158712443924_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=E2T1D4IJiG0AX9Rk6WV&_nc_ht=scontent.fadb6-5.fna&oh=00_AfCDUu5pIIUhYdUbv3PxPdj2i28DsLctTNlGgpd7b125hA&oe=6606AD2F"
             alt="Profile Image"
           />
           <div className="info-section">
             <h1>Hekim Aktaş</h1>
-            <p>Jr.Full Stack Web Developer</p>
-           
+            <p>Jr.Full Stack Web Developer & Jr.Data Scientist</p>
+            <div className="info">
+              <FontAwesomeIcon icon={faBirthdayCake} className="icon" />
+              <span className="label">Doğum Günü:</span>
+              <span className="value">2 Eylül 2003</span>
+            </div>
             <div className="info">
               <FontAwesomeIcon icon={faGlobe} className="icon" />
               <span className="label">Website:</span>
@@ -255,10 +251,10 @@ const About = () => {
         </Card>
         <InfoCard>
           <div>
-            <h2>Full Stack Web Development</h2>
+            <h2>Full Stack Development</h2>
             <p>
               2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan
-              bir Software Developerım.
+              bir software developer'ım.
             </p>
           </div>
           <div>
