@@ -100,8 +100,8 @@ const FeaturedProjectsSection = styled.section`
       left: 0;
       height: 4px;
       background-color: #61dafb;
-      animation: ${underlineAnimation} 0.5s ease forwards;
-      animation-delay: 2s; /* Animasyonun başlaması için biraz gecikme ekleyin */
+      animation: ${underlineAnimation} 1s ease forwards; // Animasyon süresini 1 saniyeye çıkardık
+      animation-delay: 3s; // Animasyonun başlaması için gecikmeyi 3 saniyeye çıkardık
     }
   }
 
@@ -182,7 +182,7 @@ const AnimatedTitle = ({ text }: { text: string }) => {
       <span
         key={index}
         className="letter"
-        style={{ animationDelay: `${0.1 * index}s` }}
+        style={{ animationDelay: `${0.2 * index}s` }} // Her harfin animasyon gecikmesini 0.2 saniye artırdık
       >
         {char}
       </span>
