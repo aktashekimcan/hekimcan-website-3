@@ -130,37 +130,7 @@ const Projects: React.FC = () => {
       description:
         "Kullanıcıların film incelemelerini okuyabileceği, kendi incelemelerini paylaşabileceği ve film önerileri alabileceği bir platform. React ve Redux ile frontend, Node.js, Express ve MongoDB ile backend geliştirildi.",
     },
-   
-    {
-      name: "Makine Öğrenimi Modeli Geliştirme",
-      technologies: "Python, scikit-learn, Pandas, NumPy",
-      description:
-        "Bu proje, veri analizi ve makine öğrenimi modelleri geliştirmek için Python ve ilgili kütüphaneleri kullanır. Özellikle scikit-learn ile sınıflandırma, regresyon ve kümeleme gibi algoritmalar uygulanabilir.",
-    },
-    {
-      name: "Zaman Serisi Tahmini",
-      technologies: "Python, TensorFlow, Keras, Pandas",
-      description:
-        "Bu proje, zaman serisi verileri üzerinde tahmin modelleri geliştirmek için derin öğrenme tekniklerini kullanır. TensorFlow ve Keras ile RNN veya LSTM ağları oluşturulabilir ve Pandas ile veri işleme yapılır.",
-    },
-    {
-      name: "Finansal Veri Analizi Uygulaması",
-      technologies: "Python, Pandas, Matplotlib, QuantLib",
-      description:
-        "Finansal piyasalardan elde edilen verilerin analizi ve görselleştirilmesi için bir uygulama. Pandas ve Matplotlib kullanarak veri işleme ve görselleştirme, QuantLib ile finansal hesaplamalar yapılır.",
-    },
-    {
-      name: "Tavsiye Sistemi",
-      technologies: "Python, Pandas, scikit-learn, Flask",
-      description:
-        "Kullanıcıların geçmiş etkileşimlerine dayanarak ürün veya içerik önerileri sunan bir sistem. Flask ile bir web servisi olarak dağıtılabilir ve scikit-learn ile öneri algoritmaları geliştirilebilir.",
-    },
-    {
-      name: "Görüntü İşleme ve Tanıma",
-      technologies: "Python, OpenCV, TensorFlow, Keras",
-      description:
-        "Görüntü işleme teknikleri ve derin öğrenme modelleri kullanarak nesne tanıma ve görüntü sınıflandırma yapılır. OpenCV ile görüntü işleme, TensorFlow ve Keras ile model eğitimi gerçekleştirilir.",
-    },
+
   ];
 
   return (
