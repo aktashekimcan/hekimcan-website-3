@@ -72,7 +72,7 @@ const Projects: React.FC = () => {
      
       description:
         "Kişisel portfolyo web sitem, React-Next.js ile geliştirildi ve CSS ile Bootstrap kullanılarak stilize edildi. Bu proje, projelerimi ve teknik becerilerimi sergiliyor.",
-        "Kişisel portfolyo web sitem, React ile geliştirildi ve CSS ile Bootstrap kullanılarak stilize edildi. Bu proje, projelerimi ve teknik becerilerimi sergiliyor.",
+        
     },
     {
 
