@@ -130,8 +130,7 @@ const Projects: React.FC = () => {
       description:
         "Kullanıcıların film incelemelerini okuyabileceği, kendi incelemelerini paylaşabileceği ve film önerileri alabileceği bir platform. React ve Redux ile frontend, Node.js, Express ve MongoDB ile backend geliştirildi.",
     },
-    // Diğer proje nesneleri burada yer alacak...
-    // ...
+   
     {
       name: "Makine Öğrenimi Modeli Geliştirme",
       technologies: "Python, scikit-learn, Pandas, NumPy",
