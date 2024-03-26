@@ -254,7 +254,7 @@ const About = () => {
             <h2>Full Stack Development</h2>
             <p>
               2017 yılından bu yana Full Stack Web Geliştirme alanında çalışan
-              bir software developer'ım.
+              bir Software Developerım.
             </p>
           </div>
           <div>
