@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import Link from "next/link";
+import { Link as ScrollLink } from "react-scroll";
 import { useRouter } from "next/router";
 import { useContext } from "react";
 import { SidebarContext } from "../_app";
@@ -24,6 +24,8 @@ import {
   faSkype,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons"; // Eğer kullanılacaksa, doğru import ifadesini ekleyin
+
 const commonTransition = css`
   transition: all 0.3s ease;
 `;
@@ -291,14 +293,15 @@ const Header = () => {
 
   const router = useRouter();
   const menuItems = [
-    { href: "/", icon: faHome, text: "Ana Sayfa" },
-    { href: "/about", icon: faUser, text: "Hakkımda" },
-    { href: "/education", icon: faGraduationCap, text: "Eğitim" },
-    { href: "/skills", icon: faCode, text: "Diller ve Araçlar" },
-    { href: "/projects", icon: faProjectDiagram, text: "Projeler" },
-    { href: "/contact", icon: faEnvelope, text: "İletişim" },
-    // Diğer menü öğeleri buraya eklenebilir
+    { href: "hero", icon: faHome, text: "Ana Sayfa" },
+    { href: "featured-projects", icon: faStar, text: "Öne Çıkan Projelerim" },
+    { href: "about", icon: faUser, text: "Hakkımda" },
+    { href: "education", icon: faGraduationCap, text: "Eğitim" },
+    { href: "skills", icon: faCode, text: "Diller ve Araçlar" },
+    { href: "projects", icon: faProjectDiagram, text: "Projeler" },
+    { href: "contact", icon: faEnvelope, text: "İletişim" },
   ];
+
   return (
     <>
       <MobileNavToggle onClick={() => setIsNavOpen(!isNavOpen)}>
@@ -335,13 +338,21 @@ const Header = () => {
           <nav id="navbar" className="nav-menu navbar">
             <NavList>
               {menuItems.map((item, index) => (
-                <NavItem key={index} isActive={router.pathname === item.href}>
-                  <Link href={item.href} passHref>
-                    <span className="nav-link" onClick={closeNav}>
-                      <FontAwesomeIcon icon={item.icon} />
-                      <span>{item.text}</span>
-                    </span>
-                  </Link>
+                <NavItem
+                  key={index}
+                  isActive={router.pathname === "#" + item.href}
+                >
+                  <ScrollLink
+                    activeClass="active"
+                    to={item.href}
+                    spy={true}
+                    smooth={true}
+                    offset={-70}
+                    duration={500}
+                  >
+                    <FontAwesomeIcon icon={item.icon} />
+                    {item.text}
+                  </ScrollLink>
                 </NavItem>
               ))}
             </NavList>
