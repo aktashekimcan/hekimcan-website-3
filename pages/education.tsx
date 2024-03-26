@@ -1,7 +1,14 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import Head from "next/head";
-
+import { createGlobalStyle } from "styled-components";
+const GlobalStyle = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    
+  }
+`;
 const roadAnimation = keyframes`
   0% {
     transform: translateY(-20px);
@@ -10,18 +17,29 @@ const roadAnimation = keyframes`
     transform: translateY(0);
   }
 `;
-
+const Wrapper = styled.div`
+  margin: 20px;
+`;
 const EducationContainer = styled.section`
   padding: 5em 2em;
-  background-color: #121212; // Dark tema arka plan rengi
-  color: #fff; // Metin rengi
+  background-color: #121212; // Dark theme background color
+  color: #fff; // Text color
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin: 0;
+  margin: 0 auto; // Centered
   overflow: hidden;
   position: relative;
+  border: 2px solid #61dafb; // Light blue border
+  border-radius: 25px; // Rounded corners
+  box-shadow:
+    0 0 15px rgba(97, 218, 251, 0.5),
+    // Soft outer glow
+    0 0 30px rgba(97, 218, 251, 0.3),
+    // Additional depth
+    inset 0 0 10px rgba(97, 218, 251, 0.2); // Inner glow for depth
+  overflow: hidden;
 `;
 
 const Heading = styled.h2`
@@ -116,42 +134,43 @@ const educationData = [
 
 const MyEducation: React.FC = () => {
   return (
-    <EducationContainer>
-      <Head>
-        <title>Eğitim Geçmişi</title>
-        <meta name="description" content="Eğitim Geçmişi" />
-      </Head>
-      <Heading></Heading>
-      <TimelineSVG viewBox="0 0 100 500">
-        <Road x="25" y="0" width="50" height="500" />
-        <RoadLines>
-          {[...Array(26)].map((_, index) => (
-            <line
-              key={index}
-              x1="50"
-              y1={index * 20}
-              x2="50"
-              y2={index * 20 + 15}
-            />
-          ))}
-        </RoadLines>
-      </TimelineSVG>
+    <>
+      <GlobalStyle />
+      <Wrapper>
+        <EducationContainer id="education">
+          <Heading></Heading>
+          <TimelineSVG viewBox="0 0 100 500">
+            <Road x="25" y="0" width="50" height="500" />
+            <RoadLines>
+              {[...Array(26)].map((_, index) => (
+                <line
+                  key={index}
+                  x1="50"
+                  y1={index * 20}
+                  x2="50"
+                  y2={index * 20 + 15}
+                />
+              ))}
+            </RoadLines>
+          </TimelineSVG>
 
-      {educationData.map((entry, index) => (
-        <Entry key={index}>
-          <Content>
-            <h4>{entry.institution}</h4>
-            <p>{entry.major}</p>
-            {entry.description.map((desc, descIndex) => (
-              <p key={descIndex}>{desc}</p>
-            ))}
-          </Content>
-          <DateContainer>
-            <DateText>{entry.date}</DateText>
-          </DateContainer>
-        </Entry>
-      ))}
-    </EducationContainer>
+          {educationData.map((entry, index) => (
+            <Entry key={index}>
+              <Content>
+                <h4>{entry.institution}</h4>
+                <p>{entry.major}</p>
+                {entry.description.map((desc, descIndex) => (
+                  <p key={descIndex}>{desc}</p>
+                ))}
+              </Content>
+              <DateContainer>
+                <DateText>{entry.date}</DateText>
+              </DateContainer>
+            </Entry>
+          ))}
+        </EducationContainer>
+      </Wrapper>
+    </>
   );
 };
 
