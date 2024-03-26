@@ -64,61 +64,74 @@ const Title = styled.h1`
   margin-bottom: 30px;
 `;
 const Projects: React.FC = () => {
-  const projectList = [
+ const projectList = [
     {
+
       name: "Kişisel Portfolyo Web Sitesi",
+      technologies: "React,Next.js, CSS, Bootstrap",
       technologies: "React.Redux, CSS, Bootstrap",
       description:
+        "Kişisel portfolyo web sitem, React-Next.js ile geliştirildi ve CSS ile Bootstrap kullanılarak stilize edildi. Bu proje, projelerimi ve teknik becerilerimi sergiliyor.",
         "Kişisel portfolyo web sitem, React ile geliştirildi ve CSS ile Bootstrap kullanılarak stilize edildi. Bu proje, projelerimi ve teknik becerilerimi sergiliyor.",
     },
     {
+
       name: "E-Ticaret Platformu",
       technologies: "React, Redux, Styled Components",
       description:
         "React ve Redux kullanarak geliştirdiğim bu e-ticaret platformu, modern kullanıcı arayüzü tasarımları ve Styled Components ile özelleştirilmiş stil özellikleri içeriyor.",
     },
     {
+
       name: "Hava Durumu Uygulaması",
       technologies: "JavaScript, API, Bootstrap",
       description:
         "Bu hava durumu uygulaması, çeşitli API'larla entegre edilmiş ve JavaScript ile geliştirilmiştir. Bootstrap ile duyarlı tasarım özellikleri eklendi.",
     },
     {
+
       name: "Restoran QR Kodlu Menü Uygulaması",
       technologies: "React, Redux, Node.js, Express, MongoDB",
       description:
         "Bu uygulama, restoranların müşterilerine dijital menü sunmasını sağlar. React ve Redux ile  kullanıcı arayüzü, Node.js ve Express ile güçlü bir sunucu tarafı, MongoDB ile veritabanı yönetimi kullanılır. Admin paneli üzerinden menü yönetimi yapılabilir ve güncellenebilir. Bu sayede müşteriler, masa üzerindeki QR kodu tarayarak güncel menüye hızlıca ulaşabilirler.",
     },
     {
+
       name: "GitHub Readme Generator",
       technologies: "Node.js, JavaScript",
       description:
         "GitHub projeleriniz için dinamik readme dosyaları oluşturan bir araç. Node.js kullanılarak geliştirildi ve GitHub API'siyle etkileşime geçiyor.",
     },
     {
+
       name: "Haber Uygulaması",
       technologies: "React, Node.js, Express, MongoDB, News API",
       description:
         "Kullanıcıların çeşitli haber kaynaklarından güncel haberleri okuyabileceği bir uygulama. React ile frontend, Node.js, Express, MongoDB ve News API ile backend geliştirildi.",
     },
     {
+
       name: "Emlak İlanları Uygulaması",
       technologies: "React, Redux, Node.js, Express, MongoDB",
       description:
         "Kullanıcıların emlak ilanlarını arayabileceği ve yayınlayabileceği bir platform. React ve Redux ile frontend, Node.js, Express ve MongoDB ile backend geliştirildi.",
     },
     {
+
       name: "Yemek Tarifleri Paylaşım Platformu",
       technologies: "React, Redux, Node.js, Express, MongoDB",
       description:
         "Kullanıcıların yemek tariflerini arayabileceği, paylaşabileceği ve yorumlayabileceği bir platform. React ve Redux ile frontend, Node.js, Express ve MongoDB ile backend geliştirildi.",
     },
     {
+
       name: "Film İnceleme ve Öneri Platformu",
       technologies: "React, Redux, Node.js, Express, MongoDB",
       description:
         "Kullanıcıların film incelemelerini okuyabileceği, kendi incelemelerini paylaşabileceği ve film önerileri alabileceği bir platform. React ve Redux ile frontend, Node.js, Express ve MongoDB ile backend geliştirildi.",
     },
+    // Diğer proje nesneleri burada yer alacak...
+    // ...
     {
       name: "Makine Öğrenimi Modeli Geliştirme",
       technologies: "Python, scikit-learn, Pandas, NumPy",
