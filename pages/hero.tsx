@@ -87,7 +87,7 @@ const FeaturedProjectsSection = styled.section`
 
   h2 {
     display: inline-block;
-    font-size: 2.5rem;
+    font-size: 2.5rem; // Orjinal font boyutu
     margin-bottom: 2rem;
     color: #fff;
     position: relative;
@@ -100,8 +100,16 @@ const FeaturedProjectsSection = styled.section`
       left: 0;
       height: 4px;
       background-color: #61dafb;
-      animation: ${underlineAnimation} 1s ease forwards; // Animasyon süresini 1 saniyeye çıkardık
-      animation-delay: 3s; // Animasyonun başlaması için gecikmeyi 3 saniyeye çıkardık
+      animation: ${underlineAnimation} 1s ease forwards;
+      animation-delay: 3s;
+    }
+
+    // Medya sorgusu ile küçük ekranlarda başlık için stil ayarlamaları
+    @media (max-width: 768px) {
+      font-size: 1.8rem; // Küçük ekranlar için font boyutunu azalt
+      line-height: 2.2rem; // Satır yüksekliğini ayarla
+      padding: 0 10px; // Sağdan ve soldan padding ekle
+      box-sizing: border-box; // Padding boyutunu genel boyuta dahil et
     }
   }
 
