@@ -31,6 +31,9 @@ const GlobalStyle = createGlobalStyle`
     transition: transform 0.2s ease-out, background-color 0.2s;
     color: #000; /* Beyaz metin rengi */
     box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Gölge efekti */
+    display: flex; // İçerikleri ortala
+    justify-content: center; // Yatayda ortala
+    align-items: center; // Dikeyde ortala
 
     &:hover {
       transform: scale(1.1); /* Hover durumunda büyüt */
