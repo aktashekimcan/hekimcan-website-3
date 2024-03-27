@@ -145,8 +145,8 @@ const MobileNavToggle = styled.button`
   font-size: 24px;
   color: #fff;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   align-items: center;
   justify-content: center;
 
