@@ -1,13 +1,44 @@
-// pages/_app.tsx
 import { useState, useEffect, createContext } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Loader from "./components/LoadingAnimation"; // Yükleyici bileşeni
+import Loader from "./components/LoadingAnimation";
 import "../styles/globals.css";
-import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
+const rgbAnimation = keyframes`
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+`;
+const GlobalStyle = createGlobalStyle`
+  .scroll-top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height: 50px;
+    width: 50px;
+    font-size: 2rem;
+    z-index: 1000;
+    border: none;
+   background: linear-gradient(90deg, cyan, magenta, yellow, cyan);
+    background-size: 400% 400%;
+    border-radius: 50%; /* Make it circular */
+    animation: ${rgbAnimation} 4s linear infinite;
+    cursor: pointer;
+    transition: transform 0.2s ease-out, background-color 0.2s;
+    color: #000; /* Beyaz metin rengi */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Gölge efekti */
+
+    &:hover {
+      transform: scale(1.1); /* Hover durumunda büyüt */
+      background-color: #0056b3; /* Hover durumunda daha koyu mavi */
+    }
+  }
+`;
+
 interface MainContentProps {
   isNavOpen: boolean;
 }
@@ -15,7 +46,6 @@ interface MainContentProps {
 const MainContent = styled.main<MainContentProps>`
   transition: margin-left 0.3s ease;
   margin-left: ${(props) => (props.isNavOpen ? "300px" : "0")};
-
   @media (max-width: 768px) {
     margin-left: 0;
   }
@@ -29,7 +59,8 @@ export const SidebarContext = createContext({
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
   const [isNavOpen, setIsNavOpen] = useState(false);
-  // Added state for sidebar
+  const [showScrollTopButton, setShowScrollTopButton] = useState(false); // Scroll Top Button gösterim durumu
+
   const router = useRouter();
 
   useEffect(() => {
@@ -51,17 +82,31 @@ function MyApp({ Component, pageProps }) {
         setIsNavOpen(false);
       }
     };
-    handleResize();
 
-    // Add the event listener for subsequent resize events
     window.addEventListener("resize", handleResize);
-
-    // Remove the event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    const checkScrollTop = () => {
+      if (!showScrollTopButton && window.pageYOffset > 400) {
+        setShowScrollTopButton(true);
+      } else if (showScrollTopButton && window.pageYOffset <= 400) {
+        setShowScrollTopButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", checkScrollTop);
+    return () => window.removeEventListener("scroll", checkScrollTop);
+  }, [showScrollTopButton]);
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
+      <GlobalStyle />
       <Head>
         <title>Hekim Aktaş - Software Developer Portfolio</title>
         <meta
@@ -121,6 +166,11 @@ function MyApp({ Component, pageProps }) {
               <Component {...pageProps} />
               <Footer />
             </MainContent>
+            {showScrollTopButton && (
+              <button onClick={scrollTop} className="scroll-top-button">
+                <FontAwesomeIcon icon={faChevronUp} />
+              </button>
+            )}
           </SidebarContext.Provider>
         </>
       )}
