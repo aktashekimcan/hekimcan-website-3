@@ -18,8 +18,8 @@ const GlobalStyle = createGlobalStyle`
     position: fixed;
     bottom: 20px;
     right: 20px;
-    height: 60px;
-    width: 60px;
+    height: 80px;
+    width: 80px;
     font-size: 2rem;
     z-index: 1000;
     border: none;
