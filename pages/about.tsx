@@ -256,7 +256,7 @@ const About = () => {
           <div>
             <h2>Modern Teknolojiler</h2>
             <p>
-              21 yaşında olmama rağmen, modern web teknolojileri ve programlama
+              Genç bir Yazılım Geliştirici olmama rağmen, modern web teknolojileri ve programlama
               dilleri üzerine derinlemesine bilgi ve deneyim sahibiyim.
               JavaScript, React, Node.js ve MongoDB gibi teknolojilerle
               çalışmayı özellikle seviyorum.
