@@ -4,16 +4,24 @@ import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
 import dynamic from "next/dynamic"; // Dinamik içe aktarma için dynamic'i import edin
 // Other imports remain unchanged
-import { PrismAsyncLight } from 'react-syntax-highlighter';
-import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { PrismAsyncLight } from 'react-syntax-highlighter'; // This import might be incorrect based on the latest change attempt
+import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-// Dynamic import is used only for the PrismAsyncLight component to avoid SSR
+// Defining SyntaxHighlighterWrapperProps interface
+interface SyntaxHighlighterWrapperProps {
+  code: string;
+  language: string;
+}
+
+// Correcting DynamicPrismAsyncLight definition if necessary
 const DynamicPrismAsyncLight = dynamic(() => import('react-syntax-highlighter/dist/esm/prism-async-light'), {
   ssr: false,
 });
 
-const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({ code, language }) => {
-  // Since darcula is statically imported, we can use it directly here
+const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
+  code,
+  language,
+}) => {
   return (
     <DynamicPrismAsyncLight language={language} style={darcula}>
       {code}
