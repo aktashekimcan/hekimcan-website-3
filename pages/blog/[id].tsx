@@ -2,8 +2,12 @@ import React from "react";
 import { blogs } from "./data";
 import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-// Darcula temasını import edin
+import dynamic from "next/dynamic"; // Dinamik içe aktarma için dynamic'i import edin
+// SyntaxHighlighter için dinamik import
+const SyntaxHighlighter = dynamic(
+  () => import("react-syntax-highlighter").then((module) => module.Prism),
+  { ssr: false },
+); // Darcula temasını import edin
 import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 const GlobalStyle = createGlobalStyle`
   body {
@@ -72,6 +76,11 @@ const images = [
 const BlogDetay = () => {
   const router = useRouter();
   const { id } = router.query;
+
+  if (typeof id === "undefined") {
+    return <div>Yükleniyor...</div>; // veya bir yükleme spinner'ı
+  }
+
   const blog = blogs.find((blog) => blog.id.toString() === id);
 
   if (!blog) {
@@ -86,20 +95,50 @@ const BlogDetay = () => {
   }
 
   let contentSections = [];
+  let paragraphCount = 0;
+  let containsCodeBlock = false; // Flag to track presence of code blocks
+
   blog.content.split("```").forEach((section, index) => {
     // Odd indices are code blocks
     if (index % 2 === 1) {
+      containsCodeBlock = true;
       contentSections.push(
-        <SyntaxHighlighter language="javascript" style={darcula} key={`code-${index}`}>
+        <SyntaxHighlighter
+          language="javascript"
+          style={darcula}
+          key={`code-${index}`}
+        >
           {section.trim()}
-        </SyntaxHighlighter>
+        </SyntaxHighlighter>,
       );
     } else {
       section.split("\n\n").forEach((paragraph, idx) => {
-        contentSections.push(<p key={`paragraph-${index}-${idx}`}>{paragraph}</p>);
+        contentSections.push(
+          <p key={`paragraph-${index}-${idx}`}>{paragraph}</p>,
+        );
+        paragraphCount++;
       });
     }
   });
+
+  // If the blog does not contain any code blocks, insert images after every five paragraphs
+  if (!containsCodeBlock) {
+    contentSections = contentSections.reduce((acc, section, index) => {
+      acc.push(section);
+
+      if (index % 5 === 4 && images[Math.floor(index / 5)]) {
+        acc.push(
+          <Image
+            key={`image-${Math.floor(index / 5)}`}
+            src={images[Math.floor(index / 5)]}
+            alt={`Illustration ${Math.floor(index / 5) + 1}`}
+          />,
+        );
+      }
+
+      return acc;
+    }, []);
+  }
 
   return (
     <>
