@@ -195,10 +195,11 @@ function MyApp({ Component, pageProps }) {
               </ReturnHomeButton>
             </Link>
           )}
-          <MainContent>
-            <Component {...pageProps} />
-            <Footer />
-          </MainContent>
+<MainContent isNavOpen={isNavOpen}>
+  <Component {...pageProps} />
+  <Footer />
+</MainContent>
+
         </>
       )}
     </>
