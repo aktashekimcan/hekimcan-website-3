@@ -2,18 +2,12 @@ import React from "react";
 import { blogs } from "./data";
 import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
-import dynamic from "next/dynamic"; // Dinamik içe aktarma için dynamic'i import edin
-// Other imports remain unchanged
-import { PrismAsyncLight } from "react-syntax-highlighter"; // This import might be incorrect based on the latest change attempt
 import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-// Defining SyntaxHighlighterWrapperProps interface
-interface SyntaxHighlighterWrapperProps {
-  code: string;
-  language: string;
-}
+import dynamic from "next/dynamic"; // Dinamik içe aktarma için dynamic'i import edin
+// Other imports remain unchanged
 
-// Correcting DynamicPrismAsyncLight definition if necessary
+// Dinamik olarak yüklenen PrismAsyncLight bileşenini tanımla.
 const DynamicPrismAsyncLight = dynamic(
   () => import("react-syntax-highlighter/dist/esm/prism-async-light"),
   {
@@ -21,18 +15,23 @@ const DynamicPrismAsyncLight = dynamic(
   },
 );
 
+interface SyntaxHighlighterWrapperProps {
+  code: string;
+  language: string;
+}
+
+// PrismAsyncLight bileşenini kullanarak kodu highlight etmek için bir wrapper.
 const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
   code,
   language,
 }) => {
-  // Children olarak kod bloğunu geçir
+  // children prop olarak kodu ve diğer prop'ları doğrudan geçir.
   return (
     <DynamicPrismAsyncLight language={language} style={darcula}>
       {code}
     </DynamicPrismAsyncLight>
   );
 };
-
 
 const GlobalStyle = createGlobalStyle`
   body {
