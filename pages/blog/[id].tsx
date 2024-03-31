@@ -1,7 +1,31 @@
+import React from "react";
 import { blogs } from "./data";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
+import dynamic from "next/dynamic"; // Dinamik içe aktarma için dynamic'i import edin
+// SyntaxHighlighter için dinamik import
+const DynamicSyntaxHighlighter = dynamic(
+  () => import("react-syntax-highlighter").then((module) => module.Prism),
+  { ssr: false },
+);
 
+// Wrapper bileşeni tanımla ve tiplemeleri uygula
+const SyntaxHighlighterWrapper: React.FC<{
+  language: string;
+  style: any;
+  children: React.ReactNode;
+}> = (props) => {
+  // Destructuring ile props'lardan gerekli değerleri al
+  const { children, language, style } = props;
+
+  // Children dahil edilerek DynamicSyntaxHighlighter bileşenini döndür
+  return (
+    <DynamicSyntaxHighlighter language={language} style={style}>
+      {children}
+    </DynamicSyntaxHighlighter>
+  );
+}; // Darcula temasını import edin
+import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: #121212;
@@ -9,92 +33,142 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
   }
 `;
 
 const Container = styled.div`
   padding: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center; // İçeriği sayfa ortasında hizala
 `;
 
 const Card = styled.div`
-  display: flex;
-  background-color: #333;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
   padding: 20px;
-  color: #fff;
-  align-items: center;
-  max-width: 600px;
-  width: 100%;
+  width: 80%; // Kartın genişliğini sınırla
+  max-width: 800px; // Maksimum genişlik sınırlaması
 `;
 
-const Thumbnail = styled.img`
-  width: 100px;
-  height: auto;
-  border-radius: 4px;
-  margin-right: 20px;
-`;
-
-const TextContent = styled.div`
-  flex: 1;
-`;
-
-const StyledLink = styled.a`
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 15px;
-  border-radius: 5px;
-  text-decoration: none;
-  margin-top: 10px;
-  &:hover {
-    background-color: #0056b3;
-  }
+const Title = styled.h1`
+  color: #ffffff;
 `;
 
 const DateText = styled.p`
   color: #bbbbbb;
 `;
 
-const Title = styled.h1`
-  color: #ffffff;
-  margin-bottom: 20px; /* Adjusted margin for visual balance */
-  padding-bottom: 8px; /* Padding under the text for spacing the border */
-  border-bottom: 2px solid #61dafb; /* Stylish border bottom */
-  width: fit-content; /* Adjust width to content size */
-  box-sizing: border-box; /* Include padding and border in element's total width */
+const ContentWrapper = styled.div`
+  white-space: pre-wrap;
+  color: #dddddd;
+`;
+const CodeBlock = styled.pre`
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  padding: 15px;
+  border-radius: 4px;
+  overflow-x: auto;
 `;
 
-const BlogListesi = () => {
+const InlineCode = styled.code`
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  padding: 2px 4px;
+  border-radius: 4px;
+`;
+
+const Image = styled.img`
+  max-width: 60%; // Resimlerin genişliğini küçült
+  border-radius: 8px;
+  margin: 20px auto; // Resimleri üstten ve alttan 20px boşlukla ve ortada hizala
+  display: block; // Block seviyesinde bir element olarak ayarla
+`;
+const images = [
+  "https://img.freepik.com/free-vector/react-native-mobile-app-abstract-concept-illustration-cross-platform-native-mobile-app-development-framework-javascript-library-user-interface-operating-system_335657-3350.jpg?t=st=1711872673~exp=1711876273~hmac=17ede8c22d57623d153c9455c9f2c93b3f2e5a816dd4754712636bb876176a76&w=740",
+  "https://img.freepik.com/free-vector/desktop-smartphone-app-development_23-2148683810.jpg?t=st=1711872714~exp=1711876314~hmac=33c2caeb443e94363f795ff2ca5f877b17e7b000425eec0711379cac1d115e16&w=740",
+  "https://img.freepik.com/free-vector/programmers-using-javascript-programming-language-computer-tiny-people-javascript-language-javascript-engine-js-web-development-concept-bright-vibrant-violet-isolated-illustration_335657-986.jpg?t=st=1711873138~exp=1711876738~hmac=f0fa7c8f078609aaf052211f39fa77681c42f3a070adb96777374bf6f810dd0e&w=996",
+];
+const BlogDetay = () => {
+  const router = useRouter();
+  const { id } = router.query;
+
+  if (typeof id === "undefined") {
+    return <div>Yükleniyor...</div>; // veya bir yükleme spinner'ı
+  }
+
+  const blog = blogs.find((blog) => blog.id.toString() === id);
+
+  if (!blog) {
+    return (
+      <>
+        <GlobalStyle />
+        <Container>
+          <p>Blog bulunamadı!</p>
+        </Container>
+      </>
+    );
+  }
+
+  let contentSections = [];
+  let paragraphCount = 0;
+  let containsCodeBlock = false; // Flag to track presence of code blocks
+
+  blog.content.split("```").forEach((section, index) => {
+    // Odd indices are code blocks
+    if (index % 2 === 1) {
+      containsCodeBlock = true;
+      contentSections.push(
+        <SyntaxHighlighterWrapper
+          language="javascript"
+          style={darcula}
+          key={`code-${index}`}
+        >
+          {section.trim()}
+        </SyntaxHighlighterWrapper>,
+      );
+    } else {
+      section.split("\n\n").forEach((paragraph, idx) => {
+        contentSections.push(
+          <p key={`paragraph-${index}-${idx}`}>{paragraph}</p>,
+        );
+        paragraphCount++;
+      });
+    }
+  });
+
+  // If the blog does not contain any code blocks, insert images after every five paragraphs
+  if (!containsCodeBlock) {
+    contentSections = contentSections.reduce((acc, section, index) => {
+      acc.push(section);
+
+      if (index % 5 === 4 && images[Math.floor(index / 5)]) {
+        acc.push(
+          <Image
+            key={`image-${Math.floor(index / 5)}`}
+            src={images[Math.floor(index / 5)]}
+            alt={`Illustration ${Math.floor(index / 5) + 1}`}
+          />,
+        );
+      }
+
+      return acc;
+    }, []);
+  }
+
   return (
     <>
       <GlobalStyle />
       <Container>
-        <Title>Blog Yazılarım</Title> {/* Styled Title with bottom border */}
-        {blogs.map((blog) => (
-          <Card key={blog.id}>
-            <Thumbnail src={blog.thumbnail} alt="Blog Thumbnail" />
-            <TextContent>
-              <h5>{blog.title}</h5>
-              <p>{blog.summary}</p>
-              <DateText>{blog.date}</DateText>
-
-              <Link href={`/blog/${blog.id}`} passHref>
-                <StyledLink>Devamını Oku</StyledLink>
-              </Link>
-            </TextContent>
-          </Card>
-        ))}
+        <Card>
+          <Title>{blog.title}</Title>
+          <DateText>{blog.date}</DateText>
+          <ContentWrapper>{contentSections}</ContentWrapper>
+        </Card>
       </Container>
     </>
   );
 };
 
-export default BlogListesi;
+export default BlogDetay;
