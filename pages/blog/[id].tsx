@@ -9,7 +9,10 @@ import dynamic from "next/dynamic"; // Dinamik içe aktarma için dynamic'i impo
 
 // Dinamik olarak yüklenen PrismAsyncLight bileşenini tanımla.
 const DynamicPrismAsyncLight = dynamic(
-  () => import("react-syntax-highlighter/dist/esm/prism-async-light"),
+  () =>
+    import("react-syntax-highlighter/dist/esm/prism-async-light").then(
+      (module) => module.PrismAsyncLight,
+    ),
   {
     ssr: false,
   },
@@ -20,12 +23,11 @@ interface SyntaxHighlighterWrapperProps {
   language: string;
 }
 
-// PrismAsyncLight bileşenini kullanarak kodu highlight etmek için bir wrapper.
 const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
   code,
   language,
 }) => {
-  // children prop olarak kodu ve diğer prop'ları doğrudan geçir.
+  // Bileşen, `PrismAsyncLight`'ın beklediği şekilde `children` olarak kod bloğunu alacak.
   return (
     <DynamicPrismAsyncLight language={language} style={darcula}>
       {code}
