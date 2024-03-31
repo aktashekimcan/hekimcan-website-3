@@ -4,36 +4,61 @@ import { useRouter } from "next/router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Link from "next/link";
+
 import Loader from "./components/LoadingAnimation";
 import "../styles/globals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp, faHome } from "@fortawesome/free-solid-svg-icons";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
 const rgbAnimation = keyframes`
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 `;
+const ReturnHomeButton = styled.button`
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #149ddd;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1050; // Ensure it's above most other content
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0f5c55;
+  }
+
+  @media (max-width: 768px) {
+    top: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+`;
+
 const GlobalStyle = createGlobalStyle`
   .scroll-top-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    height: 80px;
-    width: 80px;
+    height: 50px;
+    width: 50px;
     font-size: 2rem;
     z-index: 1000;
     border: none;
    background: linear-gradient(90deg, cyan, magenta, yellow, cyan);
     background-size: 400% 400%;
-    border-radius: 50%; /* Make it circular */
+    border-radius: 20px; /* Make it circular */
     animation: ${rgbAnimation} 4s linear infinite;
     cursor: pointer;
     transition: transform 0.2s ease-out, background-color 0.2s;
     color: #000; /* Beyaz metin rengi */
     box-shadow: 0 2px 5px rgba(0,0,0,0.3); /* Gölge efekti */
-    display: flex; // İçerikleri ortala
-    justify-content: center; // Yatayda ortala
-    align-items: center; // Dikeyde ortala
 
     &:hover {
       transform: scale(1.1); /* Hover durumunda büyüt */
@@ -67,10 +92,9 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
-    // Sadece ana sayfada ve ilk yüklemede yükleyiciyi göster
     if (router.pathname === "/") {
-      const timer = setTimeout(() => setLoading(false), 8000);
-      return () => clearTimeout(timer);
+      setLoading(true);
+      setTimeout(() => setLoading(false), 3000); // Adjust loading time as necessary
     } else {
       setLoading(false);
     }
@@ -163,18 +187,18 @@ function MyApp({ Component, pageProps }) {
         <Loader />
       ) : (
         <>
-          <SidebarContext.Provider value={{ isNavOpen, setIsNavOpen }}>
-            <Navbar />
-            <MainContent isNavOpen={isNavOpen}>
-              <Component {...pageProps} />
-              <Footer />
-            </MainContent>
-            {showScrollTopButton && (
-              <button onClick={scrollTop} className="scroll-top-button">
-                <FontAwesomeIcon icon={faChevronUp} />
-              </button>
-            )}
-          </SidebarContext.Provider>
+          {router.pathname !== "/blog" && <Navbar />}
+          {router.pathname === "/blog" && (
+            <Link href="/" passHref>
+              <ReturnHomeButton>
+                <FontAwesomeIcon icon={faHome} /> Ana Sayfaya Dön
+              </ReturnHomeButton>
+            </Link>
+          )}
+          <MainContent>
+            <Component {...pageProps} />
+            <Footer />
+          </MainContent>
         </>
       )}
     </>
