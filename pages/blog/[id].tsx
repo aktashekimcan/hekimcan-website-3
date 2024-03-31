@@ -3,28 +3,23 @@ import { blogs } from "./data";
 import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
 import dynamic from "next/dynamic"; // Dinamik içe aktarma için dynamic'i import edin
-// SyntaxHighlighter için dinamik import
 const DynamicSyntaxHighlighter = dynamic(
-  () => import("react-syntax-highlighter").then((module) => module.Prism),
+  () =>
+    import("react-syntax-highlighter").then((module) => module.Prism || module),
   { ssr: false },
 );
 
-// Wrapper bileşeni tanımla ve tiplemeleri uygula
 const SyntaxHighlighterWrapper: React.FC<{
   language: string;
   style: any;
-  children: React.ReactNode;
-}> = (props) => {
-  // Destructuring ile props'lardan gerekli değerleri al
-  const { children, language, style } = props;
-
-  // Children dahil edilerek DynamicSyntaxHighlighter bileşenini döndür
+  code: string; // Changed from children to code
+}> = ({ code, language, style }) => {
   return (
     <DynamicSyntaxHighlighter language={language} style={style}>
-      {children}
+      {code} {/* Assuming code is now a directly accepted prop */}
     </DynamicSyntaxHighlighter>
   );
-}; // Darcula temasını import edin
+};
 import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 const GlobalStyle = createGlobalStyle`
   body {
@@ -123,10 +118,9 @@ const BlogDetay = () => {
         <SyntaxHighlighterWrapper
           language="javascript"
           style={darcula}
+          code={section.trim()} // Pass code as a prop
           key={`code-${index}`}
-        >
-          {section.trim()}
-        </SyntaxHighlighterWrapper>,
+        />,
       );
     } else {
       section.split("\n\n").forEach((paragraph, idx) => {
