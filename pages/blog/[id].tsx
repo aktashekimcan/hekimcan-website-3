@@ -9,17 +9,26 @@ const DynamicSyntaxHighlighter = dynamic(
   { ssr: false },
 );
 
-const SyntaxHighlighterWrapper: React.FC<{
+interface SyntaxHighlighterWrapperProps {
   language: string;
   style: any;
-  code: string; // Changed from children to code
-}> = ({ code, language, style }) => {
+  code: string;
+}
+
+const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
+  code,
+  language,
+  style,
+}) => {
+  // Directly using `dangerouslySetInnerHTML` is generally not recommended without proper sanitization
+  // to prevent XSS attacks. Ensure your code content is sanitized if it comes from user input.
   return (
-    <DynamicSyntaxHighlighter language={language} style={style}>
-      {code} {/* Assuming code is now a directly accepted prop */}
+    <DynamicSyntaxHighlighter language={language} style={style || darcula}>
+      <div dangerouslySetInnerHTML={{ __html: code }} />
     </DynamicSyntaxHighlighter>
   );
 };
+
 import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 const GlobalStyle = createGlobalStyle`
   body {
