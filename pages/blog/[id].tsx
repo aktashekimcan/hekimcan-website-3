@@ -3,34 +3,33 @@ import { blogs } from "./data";
 import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
 import dynamic from "next/dynamic"; // Dinamik içe aktarma için dynamic'i import edin
-const DynamicSyntaxHighlighter = dynamic(
+const PrismAsyncLight = dynamic(
+  () => import("react-syntax-highlighter/dist/esm/prism-async-light"),
+  { ssr: false },
+);
+const darcula = dynamic(
   () =>
-    import("react-syntax-highlighter").then((module) => module.Prism || module),
+    import("react-syntax-highlighter/dist/esm/styles/prism").then(
+      (mod) => mod.darcula,
+    ),
   { ssr: false },
 );
 
 interface SyntaxHighlighterWrapperProps {
   language: string;
-  style: any;
   code: string;
 }
 
 const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
   code,
   language,
-  style,
 }) => {
-  // Preparing a component with the code as children
-  const CodeComponent = () => <pre style={style || darcula}>{code}</pre>;
-
   return (
-    <DynamicSyntaxHighlighter language={language}>
-      <CodeComponent />
-    </DynamicSyntaxHighlighter>
+    <PrismAsyncLight language={language} style={darcula}>
+      {code}
+    </PrismAsyncLight>
   );
 };
-
-import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: #121212;
