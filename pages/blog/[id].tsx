@@ -20,11 +20,12 @@ const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
   language,
   style,
 }) => {
-  // Directly using `dangerouslySetInnerHTML` is generally not recommended without proper sanitization
-  // to prevent XSS attacks. Ensure your code content is sanitized if it comes from user input.
+  // Preparing a component with the code as children
+  const CodeComponent = () => <pre style={style || darcula}>{code}</pre>;
+
   return (
-    <DynamicSyntaxHighlighter language={language} style={style || darcula}>
-      <div dangerouslySetInnerHTML={{ __html: code }} />
+    <DynamicSyntaxHighlighter language={language}>
+      <CodeComponent />
     </DynamicSyntaxHighlighter>
   );
 };
