@@ -155,7 +155,7 @@ const BlogDetay = () => {
           language="javascript"
           code={section.trim()}
           key={`code-${index}`}
-        />,
+        />
       );
     } else {
       section.split("\n\n").forEach((paragraph, idx) => {
