@@ -2,35 +2,30 @@ import React from "react";
 import { blogs } from "./data";
 import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
+
+
+import dynamic from "next/dynamic"; 
 import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { PrismAsyncLight as PrismAsyncLightComponent } from "react-syntax-highlighter";
 
-import dynamic from "next/dynamic"; // Dinamik içe aktarma için dynamic'i import edin
-// Other imports remain unchanged
-
-// Dinamik olarak yüklenen PrismAsyncLight bileşenini tanımla.
-const DynamicPrismAsyncLight = dynamic(
-  () =>
-    import("react-syntax-highlighter/dist/esm/prism-async-light").then(
-      (module) => module.PrismAsyncLight,
-    ),
-  {
-    ssr: false,
-  },
-);
+// Dinamik olarak yüklenen PrismAsyncLight bileşenini tanımla
+const DynamicPrismAsyncLight = dynamic(() => import("react-syntax-highlighter/dist/esm/prism-async-light"), {
+  ssr: false,
+  loading: () => <p>Loading...</p>,
+});
 
 interface SyntaxHighlighterWrapperProps {
   code: string;
   language: string;
 }
 
-const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
-  code,
-  language,
-}) => {
-  // Bileşen, `PrismAsyncLight`'ın beklediği şekilde `children` olarak kod bloğunu alacak.
+const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({ code, language }) => {
+  // PrismAsyncLightComponent direkt olarak kullanılarak children tipi sorunu çözülür.
   return (
     <DynamicPrismAsyncLight language={language} style={darcula}>
-      {code}
+      <PrismAsyncLightComponent language={language} style={darcula}>
+        {code}
+      </PrismAsyncLightComponent>
     </DynamicPrismAsyncLight>
   );
 };
