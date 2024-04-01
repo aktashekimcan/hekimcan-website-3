@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Link from "next/link";
 
 import Loader from "./components/LoadingAnimation";
 import "../styles/globals.css";
@@ -92,9 +91,10 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
 
   useEffect(() => {
+    // Sadece ana sayfada ve ilk yüklemede yükleyiciyi göster
     if (router.pathname === "/") {
-      setLoading(true);
-      setTimeout(() => setLoading(false), 3000); // Adjust loading time as necessary
+      const timer = setTimeout(() => setLoading(false), 8000);
+      return () => clearTimeout(timer);
     } else {
       setLoading(false);
     }
@@ -187,19 +187,18 @@ function MyApp({ Component, pageProps }) {
         <Loader />
       ) : (
         <>
-          {router.pathname !== "/blog" && <Navbar />}
-          {router.pathname === "/blog" && (
-            <Link href="/" passHref>
-              <ReturnHomeButton>
-                <FontAwesomeIcon icon={faHome} /> Ana Sayfaya Dön
-              </ReturnHomeButton>
-            </Link>
-          )}
-<MainContent isNavOpen={isNavOpen}>
-  <Component {...pageProps} />
-  <Footer />
-</MainContent>
-
+          <SidebarContext.Provider value={{ isNavOpen, setIsNavOpen }}>
+            <Navbar />
+            <MainContent isNavOpen={isNavOpen}>
+              <Component {...pageProps} />
+              <Footer />
+            </MainContent>
+            {showScrollTopButton && (
+              <button onClick={scrollTop} className="scroll-top-button">
+                <FontAwesomeIcon icon={faChevronUp} />
+              </button>
+            )}
+          </SidebarContext.Provider>
         </>
       )}
     </>
