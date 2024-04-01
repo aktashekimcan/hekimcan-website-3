@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { blogs } from "./data";
+import { blogs } from "../../public/data";
 import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
 
