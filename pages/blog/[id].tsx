@@ -151,9 +151,8 @@ const BlogDetay = () => {
     if (index % 2 === 1) {
       containsCodeBlock = true;
       contentSections.push(
-        <SyntaxHighlighterWrapper
+         <SyntaxHighlighterWrapper
           language="javascript"
-          style={darcula} // style prop'unu burada geçiriyoruz.
           code={section.trim()}
           key={`code-${index}`}
         />,
