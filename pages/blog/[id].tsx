@@ -3,30 +3,32 @@ import { blogs } from "./data";
 import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
 
-
-import dynamic from "next/dynamic"; 
+import dynamic from "next/dynamic";
+import { PrismAsyncLight } from "react-syntax-highlighter";
 import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { PrismAsyncLight as PrismAsyncLightComponent } from "react-syntax-highlighter";
 
 // Dinamik olarak yüklenen PrismAsyncLight bileşenini tanımla
-const DynamicPrismAsyncLight = dynamic(() => import("react-syntax-highlighter/dist/esm/prism-async-light"), {
-  ssr: false,
-  loading: () => <p>Loading...</p>,
-});
+const DynamicPrismAsyncLight = dynamic(
+  () => import("react-syntax-highlighter/dist/esm/prism-async-light"),
+  {
+    ssr: false,
+    loading: () => <p>Loading...</p>,
+  },
+);
 
 interface SyntaxHighlighterWrapperProps {
   code: string;
   language: string;
 }
 
-const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({ code, language }) => {
-  // PrismAsyncLightComponent direkt olarak kullanılarak children tipi sorunu çözülür.
+const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
+  code,
+  language,
+}) => {
   return (
-    <DynamicPrismAsyncLight language={language} style={darcula}>
-      <PrismAsyncLightComponent language={language} style={darcula}>
-        {code}
-      </PrismAsyncLightComponent>
-    </DynamicPrismAsyncLight>
+    <PrismAsyncLight language={language} style={darcula}>
+      {code}
+    </PrismAsyncLight>
   );
 };
 
@@ -97,13 +99,18 @@ const images = [
 const BlogDetay = () => {
   const router = useRouter();
   const { id } = router.query;
+  const [isClient, setIsClient] = useState(false);
 
-  if (typeof id === "undefined") {
-    return <div>Yükleniyor...</div>; // veya bir yükleme spinner'ı
+  useEffect(() => {
+    // Client-side render kontrolü
+    setIsClient(true);
+  }, []);
+
+  if (typeof id === "undefined" || !isClient) {
+    return <div>Yükleniyor...</div>;
   }
 
   const blog = blogs.find((blog) => blog.id.toString() === id);
-
   if (!blog) {
     return (
       <>
@@ -175,4 +182,3 @@ const BlogDetay = () => {
 };
 
 export default BlogDetay;
-  
