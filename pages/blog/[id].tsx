@@ -175,3 +175,4 @@ const BlogDetay = () => {
 };
 
 export default BlogDetay;
+  
