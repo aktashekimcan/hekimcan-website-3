@@ -4,29 +4,49 @@ import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
 
 import dynamic from "next/dynamic";
-import { PrismAsyncLight } from "react-syntax-highlighter";
-import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
+// Dinamik olarak yüklenen PrismAsyncLight bileşenini tanımla
 const DynamicPrismAsyncLight = dynamic(
-  () => import("react-syntax-highlighter/dist/esm/prism-async-light"),
+  () => import("react-syntax-highlighter").then((mod) => mod.PrismAsyncLight),
   {
     ssr: false,
-    loading: () => <p>Loading...</p>,
   },
 );
 
 interface SyntaxHighlighterWrapperProps {
   code: string;
   language: string;
-  style: any; // `style` prop'unu buraya ekleyin.
 }
 
-// `style` prop'unu `PrismAsyncLight` bileşenine uygulayacak şekilde güncelleme.
 const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
   code,
   language,
-  style,
 }) => {
+  const [loaded, setLoaded] = useState(false);
+  const [PrismAsyncLight, setPrismAsyncLight] = useState<any>(null);
+  const [style, setStyle] = useState<any>(null);
+
+  useEffect(() => {
+    // Dinamik olarak PrismAsyncLight bileşenini ve darcula stilini yükle
+    const loadHighlighter = async () => {
+      const PrismComponent = (
+        await import("react-syntax-highlighter/dist/esm/prism-async-light")
+      ).PrismAsyncLight;
+      const darculaStyle = (
+        await import("react-syntax-highlighter/dist/esm/styles/prism/darcula")
+      ).default;
+      setPrismAsyncLight(() => PrismComponent);
+      setStyle(() => darculaStyle);
+      setLoaded(true);
+    };
+
+    loadHighlighter();
+  }, []);
+
+  if (!loaded) {
+    return <p>Loading syntax highlighter...</p>;
+  }
+
   return (
     <PrismAsyncLight language={language} style={style}>
       {code}
@@ -132,9 +152,9 @@ const BlogDetay = () => {
     if (index % 2 === 1) {
       containsCodeBlock = true;
       contentSections.push(
-      <SyntaxHighlighterWrapper
+        <SyntaxHighlighterWrapper
           language="javascript"
-          style={darcula} // `style` prop'unu geçir.
+          style={darcula} // style prop'unu burada geçiriyoruz.
           code={section.trim()}
           key={`code-${index}`}
         />,
