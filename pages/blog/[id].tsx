@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { blogs } from "./data";
 import { useRouter } from "next/router";
 import styled, { createGlobalStyle } from "styled-components";
@@ -25,6 +25,7 @@ const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
   code,
   language,
 }) => {
+  // `style` prop'unu doğrudan `PrismAsyncLight` bileşenine uygula.
   return (
     <PrismAsyncLight language={language} style={darcula}>
       {code}
