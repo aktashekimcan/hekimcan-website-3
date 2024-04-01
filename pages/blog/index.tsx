@@ -1,4 +1,4 @@
-import { blogs } from "./data";
+import { blogs } from "../../public/data";
 import Link from "next/link";
 import styled, { createGlobalStyle } from "styled-components";
 
