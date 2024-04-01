@@ -7,7 +7,6 @@ import dynamic from "next/dynamic";
 import { PrismAsyncLight } from "react-syntax-highlighter";
 import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-// Dinamik olarak yüklenen PrismAsyncLight bileşenini tanımla
 const DynamicPrismAsyncLight = dynamic(
   () => import("react-syntax-highlighter/dist/esm/prism-async-light"),
   {
@@ -25,7 +24,7 @@ const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
   code,
   language,
 }) => {
-  // `style` prop'unu doğrudan `PrismAsyncLight` bileşenine uygula.
+  // `style` prop'unu kaldırdık ve doğrudan `PrismAsyncLight` bileşenine `darcula` stilini uyguluyoruz.
   return (
     <PrismAsyncLight language={language} style={darcula}>
       {code}
