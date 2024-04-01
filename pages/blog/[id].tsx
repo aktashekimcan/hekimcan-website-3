@@ -18,20 +18,21 @@ const DynamicPrismAsyncLight = dynamic(
 interface SyntaxHighlighterWrapperProps {
   code: string;
   language: string;
+  style: any; // `style` prop'unu buraya ekleyin.
 }
 
+// `style` prop'unu `PrismAsyncLight` bileşenine uygulayacak şekilde güncelleme.
 const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
   code,
   language,
+  style,
 }) => {
-  // `style` prop'unu kaldırdık ve doğrudan `PrismAsyncLight` bileşenine `darcula` stilini uyguluyoruz.
   return (
-    <PrismAsyncLight language={language} style={darcula}>
+    <PrismAsyncLight language={language} style={style}>
       {code}
     </PrismAsyncLight>
   );
 };
-
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: #121212;
@@ -131,10 +132,10 @@ const BlogDetay = () => {
     if (index % 2 === 1) {
       containsCodeBlock = true;
       contentSections.push(
-        <SyntaxHighlighterWrapper
+      <SyntaxHighlighterWrapper
           language="javascript"
-          style={darcula}
-          code={section.trim()} // Pass code as a prop
+          style={darcula} // `style` prop'unu geçir.
+          code={section.trim()}
           key={`code-${index}`}
         />,
       );
