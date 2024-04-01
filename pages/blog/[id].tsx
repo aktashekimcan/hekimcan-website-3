@@ -16,11 +16,14 @@ const DynamicPrismAsyncLight = dynamic(
 interface SyntaxHighlighterWrapperProps {
   code: string;
   language: string;
+    style: any; // Style prop'unu ekliyoruz.
+
 }
 
 const SyntaxHighlighterWrapper: React.FC<SyntaxHighlighterWrapperProps> = ({
   code,
-  language,
+  language,  style // Style prop'unu component props olarak ekliyoruz.
+
 }) => {
   const [loaded, setLoaded] = useState(false);
   const [PrismAsyncLight, setPrismAsyncLight] = useState<any>(null);
