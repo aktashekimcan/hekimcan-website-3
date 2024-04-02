@@ -217,29 +217,24 @@ const About = () => {
           <div className="info-section">
             <h1>Hekim Aktaş</h1>
             <p>Jr.Full Stack Web Developer </p>
-           
+
             <div className="info">
-              <FontAwesomeIcon icon={faGlobe} className="icon" />
               <span className="label">Website:</span>
               <span className="value">www.hekimaktas.com</span>
             </div>
             <div className="info">
-              <FontAwesomeIcon icon={faPhone} className="icon" />
               <span className="label">Telefon:</span>
               <span className="value">+90 531 905 02 75</span>
             </div>
             <div className="info">
-              <FontAwesomeIcon icon={faMapMarkerAlt} className="icon" />
               <span className="label">Adres:</span>
               <span className="value">İzmir,Türkiye</span>
             </div>
             <div className="info">
-              <FontAwesomeIcon icon={faGraduationCap} className="icon" />
               <span className="label">Derece:</span>
               <span className="value">Yazılım Mühendisliği-Lisans</span>
             </div>
             <div className="info">
-              <FontAwesomeIcon icon={faEnvelope} className="icon" />
               <span className="label">Email:</span>
               <span className="value">hekimcanaktas@gmail.com</span>
             </div>
@@ -256,10 +251,10 @@ const About = () => {
           <div>
             <h2>Modern Teknolojiler</h2>
             <p>
-              Genç bir Yazılım Geliştirici olmama rağmen, modern web teknolojileri ve programlama
-              dilleri üzerine derinlemesine bilgi ve deneyim sahibiyim.
-              JavaScript, React, Node.js ve MongoDB gibi teknolojilerle
-              çalışmayı özellikle seviyorum.
+              Genç bir Yazılım Geliştirici olmama rağmen, modern web
+              teknolojileri ve programlama dilleri üzerine derinlemesine bilgi
+              ve deneyim sahibiyim. JavaScript, React, Node.js ve MongoDB gibi
+              teknolojilerle çalışmayı özellikle seviyorum.
             </p>
           </div>
         </InfoCard>
