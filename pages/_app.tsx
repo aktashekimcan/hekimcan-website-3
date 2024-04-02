@@ -45,6 +45,9 @@ const GlobalStyle = createGlobalStyle`
     position: fixed;
     bottom: 20px;
     right: 20px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
     height: 50px;
     width: 50px;
     font-size: 2rem;
@@ -52,7 +55,7 @@ const GlobalStyle = createGlobalStyle`
     border: none;
    background: linear-gradient(90deg, cyan, magenta, yellow, cyan);
     background-size: 400% 400%;
-    border-radius: 20px; /* Make it circular */
+    border-radius: 50%; /* Make it circular */
     animation: ${rgbAnimation} 4s linear infinite;
     cursor: pointer;
     transition: transform 0.2s ease-out, background-color 0.2s;
