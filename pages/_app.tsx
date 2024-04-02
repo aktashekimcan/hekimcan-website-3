@@ -15,7 +15,6 @@ const rgbAnimation = keyframes`
   100% { background-position: 100% 50%; }
 `;
 
-
 const GlobalStyle = createGlobalStyle`
   .scroll-top-button {
     position: fixed;
@@ -48,23 +47,6 @@ const GlobalStyle = createGlobalStyle`
     width: 70px;
   }
 `;
-
-interface MainContentProps {
-  isNavOpen: boolean;
-}
-
-const MainContent = styled.main<MainContentProps>`
-  transition: margin-left 0.3s ease;
-  margin-left: ${(props) => (props.isNavOpen ? "300px" : "0")};
-  @media (max-width: 768px) {
-    margin-left: 0;
-  }
-`;
-
-export const SidebarContext = createContext({
-  isNavOpen: false,
-  setIsNavOpen: (state: boolean) => {},
-});
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
@@ -138,6 +120,7 @@ function MyApp({ Component, pageProps }) {
           property="og:description"
           content="Hekim Aktaş'ın kişisel software developer portfolyosu."
         />
+
         <meta
           property="og:image"
           content="https://media.licdn.com/dms/image/D5603AQGaUrkZgKeBcA/profile-displayphoto-shrink_800_800/0/1697036903040?e=1715212800&v=beta&t=SUSU1ncYMe8tGXcmQfMPbXKgWCuy62vSAke8gO-pgvo"
@@ -170,18 +153,16 @@ function MyApp({ Component, pageProps }) {
         <Loader />
       ) : (
         <>
-          <SidebarContext.Provider value={{ isNavOpen, setIsNavOpen }}>
-            <Navbar />
-            <MainContent isNavOpen={isNavOpen}>
-              <Component {...pageProps} />
-              <Footer />
-            </MainContent>
-            {showScrollTopButton && (
-              <button onClick={scrollTop} className="scroll-top-button">
-                        ⬆︎
-              </button>
-            )}
-          </SidebarContext.Provider>
+          <Navbar />
+
+          <Component {...pageProps} />
+          <Footer />
+
+          {showScrollTopButton && (
+            <button onClick={scrollTop} className="scroll-top-button">
+              ⬆︎
+            </button>
+          )}
         </>
       )}
     </>
