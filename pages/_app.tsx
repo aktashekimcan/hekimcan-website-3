@@ -178,7 +178,7 @@ function MyApp({ Component, pageProps }) {
             </MainContent>
             {showScrollTopButton && (
               <button onClick={scrollTop} className="scroll-top-button">
-                <FontAwesomeIcon icon={faChevronUp} />
+                        ⬆︎
               </button>
             )}
           </SidebarContext.Provider>
