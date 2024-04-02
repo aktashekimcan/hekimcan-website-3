@@ -1,20 +1,71 @@
 import React, { useEffect, useState, useRef } from "react";
 import styled, { keyframes } from "styled-components";
 import Typed from "typed.js";
+import { Canvas } from "@react-three/fiber";
+import { Stars } from "@react-three/drei";
+const random = require("maath/random/dist/maath-random.cjs");
+const TechIconsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+`;
+
+const TechIcon = styled.img`
+  height: 50px; // İkon boyutu
+  width: 50px; // İkon genişliği
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1); // Fare ile üzerine gelindiğinde büyüt
+  }
+`;
+
 const video1Url = "/videos/video-1.mp4";
 const video2Url = "/videos/video-2.mp4";
 const video3Url = "/videos/video-4.mp4"; // Assuming you have this file in your public/videos folder
 const video4Url = "/videos/video-3.mp4"; // Assuming you have this file in your public/videos folder
-const backgroundImageUrl =
-  "https://media.licdn.com/dms/image/D4D16AQF1QKld3LUC0Q/profile-displaybackgroundimage-shrink_350_1400/0/1697048712098?e=1715212800&v=beta&t=u-D9xP9LHWyNdCXJ7wKN2c6bovxOgqyvw1xVtq-UWM4";
+const HeroContent = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2; // İçeriği Canvas üzerine çıkarır
+  pointer-events: none; // İçeriğin üzerindeki mouse event'lerini devre dışı bırakır
+`;
+const CodeCard = styled.div`
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  font-family: "Courier New", Courier, monospace;
+  color: #fff;
+  max-width: 80%;
+  overflow: auto;
+  white-space: pre-wrap;
+`;
+const StyledCanvas = styled(Canvas)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; // Bu, canvas'ı içeriğin arkasına yerleştirir
+`;
 
 const HeroSection = styled.section`
   width: 100%;
   height: 100vh;
-  background: url(${backgroundImageUrl}) top center;
-  background-size: contain;
   position: relative;
+  overflow: hidden;
 
+  z-index: 1;
   &:before {
     content: "";
     background: rgba(5, 13, 24, 0.3);
@@ -28,13 +79,14 @@ const HeroSection = styled.section`
 
   .hero-container {
     position: relative;
-    z-index: 2;
     min-width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
+    color: #fff;
+    z-index: 2; // İçeriği gece gökyüzü efektinin önüne getirir
   }
 
   h1 {
@@ -62,10 +114,9 @@ const HeroSection = styled.section`
       letter-spacing: 1px;
       border-bottom: 3px solid #149ddd;
     }
-  }
-
-  @media (min-width: 1024px) {
-    background-attachment: fixed;
+    &.no-underline span {
+      border-bottom: none; // Alt çizgiyi kaldır
+    }
   }
 `;
 const dropAnimation = keyframes`
@@ -82,7 +133,7 @@ const underlineAnimation = keyframes`
 const FeaturedProjectsSection = styled.section`
   width: 100%;
   padding: 4rem 0;
-  background-color: #1a1a1a; // Dark arka plan rengi
+  background-color: #000; // Dark arka plan rengi
   text-align: center;
 
   h2 {
@@ -154,7 +205,7 @@ const FeaturedProjectsSection = styled.section`
     }
   }
   .project-card {
-    background-color: #333;
+    background-color: #121212;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     padding: 20px;
@@ -165,21 +216,23 @@ const FeaturedProjectsSection = styled.section`
     margin: 20px auto; // Üst-alt marjin ile merkezde
   }
 `;
-const ScrollButton = styled.button`
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #149ddd;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-  transition: background-color 0.3s;
 
-  &:hover {
-    background-color: #0f5c55;
-  }
-`;
+const NightSky = () => {
+  return (
+    <StyledCanvas>
+      <ambientLight intensity={0.5} />
+      <Stars
+        radius={100}
+        depth={50}
+        count={5000}
+        factor={4}
+        saturation={0}
+        fade
+      />
+    </StyledCanvas>
+  );
+};
+
 const AnimatedTitle = ({ text }: { text: string }) => {
   const letters = text.split("").map((char, index) =>
     char === " " ? (
@@ -256,7 +309,7 @@ const FeaturedProjects = () => (
 
 const Hero = () => {
   useEffect(() => {
-    const typed = new Typed(".typed", {
+    new Typed(".typed", {
       strings: [
         "Hekim Aktaş",
         "Yazılım Mühendisi",
@@ -268,35 +321,65 @@ const Hero = () => {
       backDelay: 2000,
     });
 
-    return () => {
-      typed.destroy();
-    };
+    // İkinci typing animasyonu için eklenen kod
+    new Typed(".typed-code", {
+      strings: [
+        "import React from 'react';\n\nfunction App() { return (\n    &lt;div&gt;\n      Hello World\n    &lt;/div&gt;\n  ); }\n\nexport default App;",
+      ],
+      typeSpeed: 40,
+      backSpeed: 20,
+      backDelay: 2000,
+      loop: true,
+    });
   }, []);
-
-  // Öne Çıkan Projelerime gitmek için smooth scroll fonksiyonu
-  const scrollToFeaturedProjects = () => {
-    document
-      .getElementById("featuredProjects")
-      .scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <>
       <HeroSection id="hero">
-        <div className="hero-container" data-aos="fade-in">
+        <StyledCanvas>
+          <ambientLight intensity={0.5} />
+          <Stars
+            radius={100}
+            depth={50}
+            count={5000}
+            factor={4}
+            saturation={0}
+            fade={true}
+          />
+        </StyledCanvas>
+        <HeroContent>
           <h1>Hekim Aktaş</h1>
           <p>
             Ben <span className="typed"></span>
           </p>
-          <ScrollButton onClick={scrollToFeaturedProjects}>
-            Öne Çıkan Projelerime Git
-          </ScrollButton>
-        </div>
+          <CodeCard className="no-underline">
+            <span className="typed-code"></span>
+          </CodeCard>
+          <TechIconsContainer>
+            {/* Her teknoloji için bir TechIcon etiketi ekleyin. src'de doğru yolu kullanın. */}
+            <TechIcon
+              src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
+              alt="React.js"
+            />
+            <TechIcon src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="Next.js" />
+            <TechIcon
+              src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg"
+              alt="Redux"
+            />
+            <TechIcon src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular" />
+            <TechIcon src="https://ngrx.io/assets/images/badge.svg" alt="NgRx" />
+            <TechIcon
+              src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original-wordmark.svg"
+              alt="Vue.js"
+            />
+            <TechIcon src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="Node.js" />
+            <TechIcon src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="MongoDB" />
+            <TechIcon src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="Express.js" />
+          </TechIconsContainer>
+        </HeroContent>
       </HeroSection>
-      <div id="featured-projects">
-        <FeaturedProjects />
-      </div>
     </>
   );
 };
+
 export default Hero;
