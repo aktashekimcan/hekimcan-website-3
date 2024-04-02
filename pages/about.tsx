@@ -1,15 +1,6 @@
 import Head from "next/head";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBirthdayCake,
-  faGlobe,
-  faPhone,
-  faCity,
-  faGraduationCap,
-  faEnvelope,
-  faMapMarkerAlt,
-} from "@fortawesome/free-solid-svg-icons";
+
 
 const AboutContainer = styled.div`
   background-color: #121212; // Karanlık tema arka planı
