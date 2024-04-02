@@ -1,61 +1,85 @@
-// components/TypingAnimation.tsx
 import React, { useState, useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 
-const blink = keyframes`
-  50% { opacity: 0; }
+const pulse = keyframes`
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
 `;
 
-const TypingText = styled.span`
-  font-size: 1.5rem;
-  color: #61dafb; // You can set a default color here
+const Card = styled.div`
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 800px;
+  margin: 20px auto;
+  overflow: hidden;
+`;
+
+const TypingText = styled.pre`
+  font-size: 1rem;
+  color: #61dafb;
   font-family: "Courier New", monospace;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin: 0;
 `;
 
 const Cursor = styled.span`
-  font-size: 1.125rem;
-  color: #61dafb; // Same color as TypingText for consistency
-  animation: ${blink} 1s step-end infinite;
-  font-family: "Courier New", monospace;
+  display: inline-block;
+  margin-left: 5px;
+  height: 10px;
+  width: 10px;
+  background-color: #61dafb;
+  border-radius: 50%;
+  animation: ${pulse} 1s infinite;
+  transform-origin: center;
 `;
 
 const TypingAnimation = () => {
-  const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
-  const sentences = [
-    "HEKİM AKTAŞ",
-    "Yazılım Mühendisliği Öğrencisi",
-    "Mühendis Adayı",
-    "Bilgisayar Programı Geliştiricisi",
-    "Yazılım Geliştiricisi",
-  ];
+
+  const sentence = `import React from 'react';\n\nfunction App() { return (\n    <div> Hello World\n </div>\n  ); }\n\nexport default App;`;
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (subIndex === sentences[index].length + 1 && !reverse) {
-        setReverse(true);
-        setTimeout(() => {}, 2000); // Wait after the text is complete
-      } else if (subIndex === 0 && reverse) {
-        setReverse(false);
-        setIndex((index + 1) % sentences.length);
-      }
+    if (subIndex === sentence.length + 1 && !reverse) {
+      setReverse(true);
+      setTimeout(() => {}, 2000); // Yazı tamamlandıktan sonra bekletme
+    } else if (subIndex === 0 && reverse) {
+      setReverse(false);
+    }
 
-      if (reverse && subIndex > 0) {
-        setSubIndex(subIndex - 1); // Backward erase
-      } else if (!reverse && subIndex <= sentences[index].length) {
-        setSubIndex(subIndex + 1); // Forward typing
-      }
-    }, 100);
+    const timeout = setTimeout(
+      () => {
+        setSubIndex((currentSubIndex) =>
+          reverse ? currentSubIndex - 1 : currentSubIndex + 1,
+        );
+      },
+      reverse ? 50 : 100,
+    ); // Silme hızını artır
 
     return () => clearTimeout(timeout);
-  }, [subIndex, index, reverse, sentences]);
+  }, [subIndex, reverse, sentence]);
 
   return (
-    <div>
-      <TypingText>{sentences[index].substring(0, subIndex)}</TypingText>
-      <Cursor>|</Cursor>
-    </div>
+    <Card>
+      <TypingText>
+        {sentence.substring(0, subIndex)}
+        <Cursor />
+      </TypingText>
+    </Card>
   );
 };
 
