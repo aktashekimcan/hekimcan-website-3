@@ -67,6 +67,10 @@ const GlobalStyle = createGlobalStyle`
       background-color: #0056b3; /* Hover durumunda daha koyu mavi */
     }
   }
+   @media (max-width: 768px) {
+    height: 70px;
+    width: 70px;
+  }
 `;
 
 interface MainContentProps {
