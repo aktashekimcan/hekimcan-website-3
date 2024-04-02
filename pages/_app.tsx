@@ -14,31 +14,7 @@ const rgbAnimation = keyframes`
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 `;
-const ReturnHomeButton = styled.button`
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 10px 15px;
-  font-size: 1rem;
-  color: #fff;
-  background-color: #149ddd;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  z-index: 1050; // Ensure it's above most other content
-  transition: background-color 0.3s;
 
-  &:hover {
-    background-color: #0f5c55;
-  }
-
-  @media (max-width: 768px) {
-    top: 10px;
-    right: 10px;
-    font-size: 0.8rem;
-    padding: 8px 12px;
-  }
-`;
 
 const GlobalStyle = createGlobalStyle`
   .scroll-top-button {
