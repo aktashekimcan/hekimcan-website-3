@@ -4,6 +4,8 @@ import Typed from "typed.js";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 const random = require("maath/random/dist/maath-random.cjs");
+import TypingAnimation from "./components/TypingAnimation"; // TypingAnimation bileşenini import et
+
 const TechIconsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -309,6 +311,7 @@ const FeaturedProjects = () => (
 
 const Hero = () => {
   useEffect(() => {
+    // İlk Typed.js animasyonu (Hekim Aktaş yazısı için)
     new Typed(".typed", {
       strings: [
         "Hekim Aktaş",
@@ -319,17 +322,6 @@ const Hero = () => {
       typeSpeed: 100,
       backSpeed: 50,
       backDelay: 2000,
-    });
-
-    // İkinci typing animasyonu için eklenen kod
-    new Typed(".typed-code", {
-      strings: [
-        "import React from 'react';\n\nfunction App() { return (\n    &lt;div&gt;\n      Hello World\n    &lt;/div&gt;\n  ); }\n\nexport default App;",
-      ],
-      typeSpeed: 40,
-      backSpeed: 20,
-      backDelay: 2000,
-      loop: true,
     });
   }, []);
 
@@ -352,29 +344,46 @@ const Hero = () => {
           <p>
             Ben <span className="typed"></span>
           </p>
-          <CodeCard className="no-underline">
-            <span className="typed-code"></span>
-          </CodeCard>
+          <TypingAnimation />
+
           <TechIconsContainer>
             {/* Her teknoloji için bir TechIcon etiketi ekleyin. src'de doğru yolu kullanın. */}
             <TechIcon
               src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
               alt="React.js"
             />
-            <TechIcon src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="Next.js" />
+            <TechIcon
+              src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg"
+              alt="Next.js"
+            />
             <TechIcon
               src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg"
               alt="Redux"
             />
-            <TechIcon src="https://angular.io/assets/images/logos/angular/angular.svg" alt="Angular" />
-            <TechIcon src="https://ngrx.io/assets/images/badge.svg" alt="NgRx" />
+            <TechIcon
+              src="https://angular.io/assets/images/logos/angular/angular.svg"
+              alt="Angular"
+            />
+            <TechIcon
+              src="https://ngrx.io/assets/images/badge.svg"
+              alt="NgRx"
+            />
             <TechIcon
               src="https://raw.githubusercontent.com/devicons/devicon/master/icons/vuejs/vuejs-original-wordmark.svg"
               alt="Vue.js"
             />
-            <TechIcon src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="Node.js" />
-            <TechIcon src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="MongoDB" />
-            <TechIcon src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="Express.js" />
+            <TechIcon
+              src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg"
+              alt="Node.js"
+            />
+            <TechIcon
+              src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
+              alt="MongoDB"
+            />
+            <TechIcon
+              src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg"
+              alt="Express.js"
+            />
           </TechIconsContainer>
         </HeroContent>
       </HeroSection>
