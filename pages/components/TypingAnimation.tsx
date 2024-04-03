@@ -42,7 +42,7 @@ const Cursor = styled.span`
   margin-left: 5px;
   height: 10px;
   width: 10px;
-  background-color: #61dafb;
+  background-color: #fff;
   border-radius: 50%;
   animation: ${pulse} 1s infinite;
   transform-origin: center;
