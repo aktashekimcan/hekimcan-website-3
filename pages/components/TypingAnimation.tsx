@@ -34,6 +34,7 @@ const TypingText = styled.pre`
   white-space: pre-wrap;
   word-wrap: break-word;
   margin: 0;
+  overflow: hidden;
 `;
 
 const Cursor = styled.span`
