@@ -12,6 +12,7 @@ import {
 
 const Header = () => {
   const router = useRouter();
+  // `expanded` state'ini kontrol etmek için boolean tipinde bir değer kullanılıyor.
   const [expanded, setExpanded] = useState(false);
 
   const menuItems = [
@@ -36,7 +37,7 @@ const Header = () => {
         <NavbarBrand href="#">Hekim Aktaş</NavbarBrand>
         <NavbarToggle
           aria-controls="responsive-navbar-nav"
-          onClick={() => setExpanded(expanded ? false : "expanded")}
+          onClick={() => setExpanded(!expanded)} // Burada `expanded` değerinin tersini kullanarak doğru türde bir değer sağlıyoruz.
         />
         <NavbarCollapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -51,7 +52,7 @@ const Header = () => {
                   duration={500}
                   className="nav-link"
                   href={"#" + item.href}
-                  onClick={() => setExpanded(false)}
+                  onClick={() => setExpanded(false)} // Menü öğesi tıklandığında navbar'ı kapat
                 >
                   {item.text}
                 </ScrollLink>
