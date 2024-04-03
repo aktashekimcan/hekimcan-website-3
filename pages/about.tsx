@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 import styled from "styled-components";
-<<<<<<< HEAD
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBirthdayCake,
