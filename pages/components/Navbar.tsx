@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useRouter } from "next/router";
+import {
+  Navbar,
+  Nav,
+  Container,
+  NavbarBrand,
+  NavbarToggle,
+  NavbarCollapse,
+} from "react-bootstrap";
 
 const Header = () => {
   const router = useRouter();
+  const [expanded, setExpanded] = useState(false);
 
   const menuItems = [
     { href: "hero", text: "Ana Sayfa" },
@@ -16,26 +25,23 @@ const Header = () => {
   ];
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Hekim Aktaş
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+    <Navbar
+      expanded={expanded}
+      expand="lg"
+      bg="dark"
+      variant="dark"
+      fixed="top"
+    >
+      <Container fluid>
+        <NavbarBrand href="#">Hekim Aktaş</NavbarBrand>
+        <NavbarToggle
+          aria-controls="responsive-navbar-nav"
+          onClick={() => setExpanded(expanded ? false : "expanded")}
+        />
+        <NavbarCollapse id="responsive-navbar-nav">
+          <Nav className="me-auto">
             {menuItems.map((item, index) => (
-              <li key={index} className="nav-item">
+              <Nav.Item key={index}>
                 <ScrollLink
                   activeClass="active"
                   to={item.href}
@@ -45,15 +51,16 @@ const Header = () => {
                   duration={500}
                   className="nav-link"
                   href={"#" + item.href}
+                  onClick={() => setExpanded(false)}
                 >
                   {item.text}
                 </ScrollLink>
-              </li>
+              </Nav.Item>
             ))}
-          </ul>
-        </div>
-      </div>
-    </nav>
+          </Nav>
+        </NavbarCollapse>
+      </Container>
+    </Navbar>
   );
 };
 
