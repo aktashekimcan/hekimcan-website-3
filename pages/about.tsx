@@ -1,9 +1,28 @@
 import Head from "next/head";
+import { Canvas } from "@react-three/fiber";
+import { Stars } from "@react-three/drei";
 import styled from "styled-components";
-
+<<<<<<< HEAD
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBirthdayCake,
+  faGlobe,
+  faPhone,
+  faCity,
+  faGraduationCap,
+  faEnvelope,
+  faMapMarkerAlt,
+} from "@fortawesome/free-solid-svg-icons";
+const StyledCanvas = styled(Canvas)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+`;
 
 const AboutContainer = styled.div`
-  background-color: #121212; // Karanlık tema arka planı
   color: #fff;
   min-height: 100vh;
   padding: 2rem;
@@ -14,7 +33,7 @@ const AboutContainer = styled.div`
 `;
 
 const Card = styled.div`
-  background-color: #121212;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 2rem; // Standart iç boşluk
@@ -170,7 +189,7 @@ const InfoCard = styled(Card)`
   justify-content: center;
   margin-top: 2rem;
   padding: 2rem;
-  background: linear-gradient(145deg, #232323, #1a1a1a);
+  background-color: rgba(0, 0, 0, 0.5);
   color: #61dafb; // Öne çıkan bilgi için mavi renk
 
   h2 {

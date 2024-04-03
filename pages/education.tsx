@@ -22,7 +22,6 @@ const Wrapper = styled.div`
 `;
 const EducationContainer = styled.section`
   padding: 5em 2em;
-  background-color: #121212; // Dark theme background color
   color: #fff; // Text color
   display: flex;
   flex-direction: column;

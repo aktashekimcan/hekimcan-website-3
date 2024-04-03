@@ -10,12 +10,27 @@ import "../styles/globals.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faHome } from "@fortawesome/free-solid-svg-icons";
 import styled, { createGlobalStyle, keyframes } from "styled-components";
+import { Canvas } from "@react-three/fiber";
+import { Stars } from "@react-three/drei";
+const GlobalStyles = createGlobalStyle`
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; // Ensures that the body and html tags take up the full viewport height
+  }
+  
+  #__next {
+    height: 100%; // Ensures that the Next.js root div also takes up the full viewport height
+  }
+`;
+
 const rgbAnimation = keyframes`
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 `;
 
 const GlobalStyle = createGlobalStyle`
+
   .scroll-top-button {
     position: fixed;
     bottom: 20px;
@@ -47,6 +62,23 @@ const GlobalStyle = createGlobalStyle`
     width: 70px;
   }
 `;
+<<<<<<< HEAD
+const GlobalBackground = () => (
+  <>
+    <GlobalStyles />
+    <Canvas style={{ position: "fixed", top: 0, left: 0, zIndex: -1 }}>
+      <ambientLight intensity={0.5} />
+      <Stars
+        radius={100} // Control the radius of the star sphere
+        depth={50} // Control the depth (layering) of stars
+        count={5000} // Number of stars
+        factor={4} // Star size factor
+        saturation={0} // Saturation of the stars' color
+        fade={true} // Stars fade in and out
+      />
+    </Canvas>
+  </>
+);
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(true);
@@ -98,7 +130,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <GlobalStyle />
+      <GlobalBackground />
       <Head>
         <title>Hekim Aktaş - Software Developer Portfolio</title>
         <meta

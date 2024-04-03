@@ -6,7 +6,6 @@ import { FaBootstrap, FaGit, FaJava } from "react-icons/fa";
 import Head from "next/head";
 
 const Container = styled.div`
-  background-color: #121212;
   min-height: 100vh;
   display: flex;
   justify-content: center; // Merkezde hizalama
@@ -293,7 +292,6 @@ const Skills: React.FC = () => {
 
   return (
     <Container id="skills">
-      
       <SkillsContainer>
         <SkillsHeading>Diller ve Araçlar</SkillsHeading>
         {skillIcons.map((icon, index) => (
