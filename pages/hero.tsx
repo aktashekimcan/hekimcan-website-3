@@ -5,7 +5,17 @@ import { Canvas } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
 const random = require("maath/random/dist/maath-random.cjs");
 import TypingAnimation from "./components/TypingAnimation"; // TypingAnimation bileşenini import et
-
+const TechIconCard = styled.div`
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px; // Making it round as per your instructions, but you can adjust as needed
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  width: fit-content;
+  height: fit-content;
+  padding: 10px; // Adjust padding as needed
+  display: inline-flex; // To keep it centered and inline
+  justify-content: center;
+  align-items: center;
+`;
 const TechIconsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -352,10 +362,13 @@ const Hero = () => {
               src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
               alt="React.js"
             />
-            <TechIcon
-              src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg"
-              alt="Next.js"
-            />
+            <TechIconCard>
+              <TechIcon
+                src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg"
+                alt="Next.js"
+              />
+            </TechIconCard>
+
             <TechIcon
               src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg"
               alt="Redux"
