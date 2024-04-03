@@ -1,6 +1,7 @@
 import React from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { useRouter } from "next/router";
+import { Navbar, Nav, Container } from "react-bootstrap";
 
 const Header = () => {
   const router = useRouter();
@@ -16,44 +17,86 @@ const Header = () => {
   ];
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div className="container-fluid">
-        <a className="navbar-brand" href="#">
-          Hekim Aktaş
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {menuItems.map((item, index) => (
-              <li key={index} className="nav-item">
-                <ScrollLink
-                  activeClass="active"
-                  to={item.href}
-                  spy={true}
-                  smooth={true}
-                  offset={-70}
-                  duration={500}
-                  className="nav-link"
-                  href={"#" + item.href}
-                >
-                  {item.text}
-                </ScrollLink>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <Navbar bg="dark" variant="dark" expand="lg" fixed="top" collapseOnSelect>
+      <Container>
+        <Navbar.Brand href="#home">Hekim Aktaş</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Nav.Link
+              as={ScrollLink}
+              to="hero"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
+              Ana Sayfa
+            </Nav.Link>
+            <Nav.Link
+              as={ScrollLink}
+              to="featured-projects"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
+              Öne Çıkan Projelerim
+            </Nav.Link>
+            <Nav.Link
+              as={ScrollLink}
+              to="about"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
+              Hakkımda
+            </Nav.Link>
+            <Nav.Link
+              as={ScrollLink}
+              to="education"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
+              Eğitim
+            </Nav.Link>
+            <Nav.Link
+              as={ScrollLink}
+              to="skills"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
+              Diller ve Araçlar
+            </Nav.Link>
+            <Nav.Link
+              as={ScrollLink}
+              to="projects"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
+              Projeler
+            </Nav.Link>
+            <Nav.Link
+              as={ScrollLink}
+              to="contact"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >
+              İletişim
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
