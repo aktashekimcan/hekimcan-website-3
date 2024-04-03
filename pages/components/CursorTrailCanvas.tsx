@@ -1,5 +1,5 @@
 import { CSSProperties, useEffect, useRef } from "react";
-import { cursorTrail } from "./cursorTrail";
+import { cursorTrail } from "../../utils/cursorTrail";
 
 export type CursorTrailCanvasProps = {
   color: string;
