@@ -62,7 +62,7 @@ const GlobalStyle = createGlobalStyle`
     width: 70px;
   }
 `;
-<<<<<<< HEAD
+
 const GlobalBackground = () => (
   <>
     <GlobalStyles />
