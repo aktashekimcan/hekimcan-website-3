@@ -352,7 +352,7 @@ const Hero = () => {
         <HeroContent>
           <h1>Hekim Aktaş</h1>
           <p>
-            Ben <span className="typed"></span>
+            <span className="typed"></span>
           </p>
           <TypingAnimation />
 
