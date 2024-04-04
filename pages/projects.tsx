@@ -83,8 +83,7 @@ const projects = [
   {
     name: "KFC Landing Page",
     technologies: ["#React", "#Next.js", "#StyledComponents"],
-    liveLink:
-      "https://kfc-landing-page-project-pnozb5fhg-aktashekimcans-projects.vercel.app/",
+    liveLink: "https://kfc-landing-page-project.vercel.app/",
     githubLink: "https://github.com",
     imageUrl: "https://i.hizliresim.com/dq1uncl.png",
   },
@@ -101,6 +100,13 @@ const projects = [
     liveLink: "hekimaktas.com",
     githubLink: "https://github.com",
     imageUrl: "https://i.hizliresim.com/7wvq9c1.png",
+  },
+  {
+    name: "Qr Code Restaurant Menu",
+    technologies: ["#React", "#Next.js", "#StyledComponents"],
+    liveLink: "https://qr-code-restaurant-menu.vercel.app/",
+    githubLink: "https://github.com",
+    imageUrl: "https://i.hizliresim.com/pwfq24u.png",
   },
 ];
 
