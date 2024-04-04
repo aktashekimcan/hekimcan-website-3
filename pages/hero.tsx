@@ -326,7 +326,7 @@ const Hero = () => {
       strings: [
         "Hekim Aktaş",
         "Yazılım Mühendisi",
-        "Jr.Full Stack Web Developer",
+        "Jr.Frontend Web Developer",
       ],
       loop: true,
       typeSpeed: 100,
