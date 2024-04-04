@@ -226,7 +226,7 @@ const About = () => {
           />
           <div className="info-section">
             <h1>Hekim Aktaş</h1>
-            <p>Jr.Full Stack Web Developer </p>
+            <p>Jr.Frontend Web Developer </p>
 
             <div className="info">
               <span className="label">Website:</span>
