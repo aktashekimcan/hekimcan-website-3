@@ -12,7 +12,7 @@ const Nav = styled.nav`
   position: fixed;
   width: 100%;
   top: 15px;
-  z-index: 10;
+  z-index: 1000; // Increased z-index to ensure it's on top
   border-radius: 10px;
   backdrop-filter: blur(10px);
   @media (min-width: 769px) {
@@ -103,6 +103,7 @@ const MobileMenu = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 1001; // Ensuring mobile menu is even above the Nav
   &.active {
     display: flex;
   }
