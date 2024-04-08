@@ -108,6 +108,20 @@ const projects = [
     githubLink: "https://github.com",
     imageUrl: "https://i.hizliresim.com/pwfq24u.png",
   },
+  {
+    name: "Code Editor that compiles HTM-CSS-JS",
+    technologies: ["#React", "#Next.js", "#StyledComponents","#ReactContextAPI"],
+    liveLink: "https://code-editor-aktashekimcans-projects.vercel.app/",
+    githubLink: "https://github.com",
+    imageUrl: "https://i.ibb.co/Cz78BJ2/Screenshot-2024-04-05-215627.png",
+  },
+    {
+    name: "React Tutorial Page",
+    technologies: ["#React", "#Bootstrap", "#StyledComponents"],
+    liveLink: "https://react-tutorial-aktashekimcans-projects.vercel.app/",
+    githubLink: "https://github.com",
+    imageUrl: "https://i.ibb.co/X3fq2Ph/Screenshot-2024-04-08-004226.png",
+  },
 ];
 
 const SoftwareDeveloperPortfolioProjects = () => (
