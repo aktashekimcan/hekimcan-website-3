@@ -84,7 +84,16 @@ const codeSamples = [
   {
     language: "Python",
     mode: "python",
-    code: `def greet(name: str) -> None:\n    print(f"Hello, {name}!")\n\ngreet('World')`,
+    code: `def hesapla_ortalama(sayilar) \n:
+    toplam = sum(sayilar) \n
+    adet = len(sayilar) \n
+    ortalama = toplam / adet \n
+    return ortalama \n
+
+sayilar_listesi = [10, 20, 30, 40, 50] \n
+ortalama = hesapla_ortalama(sayilar_listesi) \n
+print("Ortalama:", ortalama)
+`,
   },
   {
     language: "Node.js",
