@@ -69,37 +69,37 @@ const codeSamples = [
   {
     language: "JavaScript",
     mode: "javascript",
-    code: `// JavaScript sample\ndocument.addEventListener('DOMContentLoaded', function() {\n  console.log('Hello World');\n});`,
+    code: `document.addEventListener('DOMContentLoaded', function() {\n  console.log('Hello World');\n});`,
   },
   {
     language: "TypeScript",
     mode: "typescript",
-    code: `// Angular Component sample\nimport { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.css']\n})\nexport class AppComponent {\n  title = 'Angular App';\n}`,
+    code: `import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: ['./app.component.css']\n})\nexport class AppComponent {\n  title = 'Angular App';\n}`,
   },
   {
     language: "React",
     mode: "javascript",
-    code: `// React Component sample\nimport React from 'react';\n\nfunction App() {\n  return (\n    <div>\n      <h1>Hello World</h1>\n    </div>\n  );\n}\n\nexport default App;`,
+    code: `import React from 'react';\n\nfunction App() {\n  return (\n    <div>\n      <h1>Hello World</h1>\n    </div>\n  );\n}\n\nexport default App;`,
   },
   {
     language: "Python",
     mode: "python",
-    code: `# Python sample\ndef greet(name: str) -> None:\n    print(f"Hello, {name}!")\n\ngreet('World')`,
+    code: `def greet(name: str) -> None:\n    print(f"Hello, {name}!")\n\ngreet('World')`,
   },
   {
     language: "Node.js",
     mode: "javascript",
-    code: `// Node.js sample\nconst http = require('http');\n\nhttp.createServer((req, res) => {\n  res.writeHead(200, {'Content-Type': 'text/plain'});\n  res.end('Hello World\\n');\n}).listen(3000, 'localhost');\nconsole.log('Server running at http://localhost:3000/');`,
+    code: `const http = require('http');\n\nhttp.createServer((req, res) => {\n  res.writeHead(200, {'Content-Type': 'text/plain'});\n  res.end('Hello World\\n');\n}).listen(3000, 'localhost');\nconsole.log('Server running at http://localhost:3000/');`,
   },
   {
     language: "Simple TypeScript",
     mode: "typescript",
-    code: `// Simple TypeScript example\nlet message: string = 'Hello, TypeScript!';\nconsole.log(message);`,
+    code: `let message: string = 'Hello, TypeScript!';\nconsole.log(message);`,
   },
   {
     language: "Next.js",
     mode: "javascript",
-    code: `// Next.js Component sample\nimport { NextPage } from 'next';\n\nconst HomePage: NextPage = () => {\n  return (\n    <div>\n      <h1>Welcome to Next.js!</h1>\n    </div>\n  );\n};\n\nexport default HomePage;`,
+    code: `import { NextPage } from 'next';\n\nconst HomePage: NextPage = () => {\n  return (\n    <div>\n      <h1>Welcome to Next.js!</h1>\n    </div>\n  );\n};\n\nexport default HomePage;`,
   },
 ];
 
