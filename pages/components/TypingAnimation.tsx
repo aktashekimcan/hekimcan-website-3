@@ -163,6 +163,7 @@ const TypingAnimation = () => {
           showLineNumbers: true,
           tabSize: 2,
           readOnly: true,
+           wrap: true 
         }}
       />
     </Card>
