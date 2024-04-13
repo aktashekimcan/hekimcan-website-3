@@ -154,9 +154,9 @@ const TypingAnimation = () => {
     <Card>
       <GlobalStyle />
       <Dots>
-        <Dot color="#ff605c" />
-        <Dot color="#ffbd44" />
-        <Dot color="#00ca4e" />
+        <Dot color="#fff" />
+        <Dot color="#fff" />
+        <Dot color="#fff" />
       </Dots>
       <AceEditor
         mode={currentSample.mode}
